@@ -4,7 +4,6 @@ import getLocalizedDate from 'utils/getLocalizedDate';
 
 type Props = {
   article: Article;
-  test: string;
 };
 
 export default function ArticleCard({ article }: Props) {
