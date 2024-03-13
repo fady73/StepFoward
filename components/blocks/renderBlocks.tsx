@@ -114,14 +114,24 @@ export function renderBlocks(block) {
     case 'video':
       return (
         <div className="relative overflow-hidden">
-          <iframe
-            className="w-full h-96 md:h-[680px]"
-            src={value?.external?.url || value?.file?.url || ''}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
-          />
+          {value?.external?.url ? (
+            <iframe
+              className="w-full h-96 md:h-[680px]"
+              src={value?.external?.url || ''}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+            />
+          ) : (
+            value?.file?.url && (
+              <video
+                className="w-full h-96 md:h-[680px]"
+                src={value?.file?.url}
+                controls
+              ></video>
+            )
+          )}
         </div>
       );
     case 'quote':
