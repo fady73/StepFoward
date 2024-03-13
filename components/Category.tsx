@@ -1,4 +1,5 @@
 export default function Category({ setSelectedTag, tag, selectedTag }) {
+  //empty comments
   const handleTagClick = (tag: string) => {
     if (selectedTag === tag) {
       return setSelectedTag(null);
