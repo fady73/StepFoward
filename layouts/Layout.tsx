@@ -5,9 +5,6 @@ import { MetaHead } from './MetaHead';
 export function Layout(props) {
   const { children, date, imageUrl, title, description, ogUrl, blog } = props;
 
-  const FORM_ID = process.env.NEXT_PUBLIC_CONVERTKIT_FORM_ID;
-  const API_KEY = process.env.NEXT_PUBLIC_CONVERTKIT_API_KEY;
-
   const metaHeadProps = {
     date,
     imageUrl,
@@ -21,7 +18,7 @@ export function Layout(props) {
       <MetaHead {...metaHeadProps} />
       <Header />
       <div className="pt-14">{children}</div>
-      <Footer blog={blog} />
+      <Footer />
     </>
   );
 }

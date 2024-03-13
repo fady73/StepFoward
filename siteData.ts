@@ -1,10 +1,10 @@
 const siteData = {
   title: 'Step Forward',
-  author: 'Step Forward',
+  author: 'Step Forward - خطوة للامام',
   headerTitle: 'Step Forward - خطوة للامام',
   profileUrl: '/logo.png',
   headerDescription: '😄 to draw smile on your face ',
-  footerText: '© All rights reserved',
+  footerText: ' جميع الحقوق محفوظة لمجموعة الخدمة بالرياضة خطوة للامام © ',
   language: 'ar-eg',
   locale: 'ar-eg',
   ogBanner: 'https://nextjs-notion-blog-starter.vercel.app/preview/1.jpg',

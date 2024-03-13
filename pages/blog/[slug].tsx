@@ -70,7 +70,7 @@ const ArticlePage = ({
               priority
             />
           </div>
-          <div className="max-w-4xl px-6 mx-auto mb-24 space-y-8 md:px-8">
+          <div className="max-w-4xl px-6 mx-auto mb-24 space-y-1 md:px-8">
             {content.map(block => (
               <Fragment key={block.id}>{renderBlocks(block)}</Fragment>
             ))}

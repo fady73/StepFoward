@@ -24,7 +24,7 @@ export function renderBlocks(block) {
       );
     case 'heading_2':
       return (
-        <div className="pt-8 text-2xl font-semibold">
+        <div className="pt-4 pb-2 text-2xl font-semibold">
           <AnchorLink text={value.text[0].text.content}>
             <Text text={value.text} />
           </AnchorLink>
