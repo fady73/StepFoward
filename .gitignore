@@ -42,5 +42,7 @@ public/feed.xml
 /plugins
 /www
 /.next/*
+.vercel
+
 
 /resources
