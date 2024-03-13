@@ -24,10 +24,6 @@ const ArticlePage = ({
 
   const slug = slugify(title).toLowerCase();
 
-  // const ogImage = `https://www.phung.io/api/og-image?title=${encodeURIComponent(
-  //   title
-  // )}&date=${encodeURIComponent(publishedOn)}`;
-
   const ogImage = `${siteData.websiteUrl}/api/og-image?title=${encodeURIComponent(
     title
   )}&date=${encodeURIComponent(publishedOn)}`;
