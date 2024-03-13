@@ -7,7 +7,6 @@ import CodeBlock from 'components/blocks/CodeBlock';
 export function renderBlocks(block) {
   const { type, id } = block;
   const value = block[type];
-
   switch (type) {
     case 'paragraph':
       return (
@@ -117,7 +116,7 @@ export function renderBlocks(block) {
         <div className="relative overflow-hidden">
           <iframe
             className="w-full h-96 md:h-[680px]"
-            src={value?.external?.url || ''}
+            src={value?.external?.url || value?.file?.url || ''}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
