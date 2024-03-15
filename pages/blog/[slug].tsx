@@ -24,16 +24,13 @@ const ArticlePage = ({
 
   const slug = slugify(title).toLowerCase();
 
-  const ogImage = `${siteData.websiteUrl}/api/og-image?title=${encodeURIComponent(
-    title
-  )}&date=${encodeURIComponent(publishedOn)}`;
+  console.log(thumbnail);
 
   return (
     <>
       <Layout
         title={title}
         description={summary}
-        imageUrl={ogImage}
         date={new Date(publishedDate).toISOString()}
         ogUrl={`/blog/${slug}`}
       >

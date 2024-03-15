@@ -1,6 +1,7 @@
 module.exports = {
   images: {
-    unoptimized: true
+    unoptimized: true,
+    minimumCacheTTL: 60
   },
   images: {
     domains: [
@@ -13,6 +14,8 @@ module.exports = {
       'res.craft.do',
       'res.cloudinary.com',
       'nextjs-notion-blog-starter.vercel.app',
+      'step-forward-app.vercel.app',
+      'step-forward.vercel.app',
       'prod-files-secure.s3.us-west-2.amazonaws.com'
     ]
   }
