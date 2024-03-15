@@ -80,15 +80,15 @@ export function renderBlocks(block) {
       const caption = value.caption.length >= 1 ? value.caption[0].plain_text : '';
       return (
         <figure className="mt-0">
-          <Image
-            className="rounded-lg aspect-video"
-            src={src}
-            placeholder="blur"
-            blurDataURL={src}
-            width={1200}
-            height={684}
-            alt={caption ? caption : 'A visual depiction of what is being written about'}
-          />
+          <div className="w-full relative pt-[100%]">
+            <Image
+              src={src}
+              alt="profile"
+              objectFit="cover"
+              layout="fill"
+              className="w-full h-full top-0 left-0 object-cover rounded-2xl"
+            />
+          </div>
           {caption && <figcaption className="text-center">{caption}</figcaption>}
         </figure>
       );

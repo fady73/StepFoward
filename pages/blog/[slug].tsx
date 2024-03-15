@@ -61,7 +61,7 @@ const ArticlePage = ({
               src={thumbnail}
               placeholder="blur"
               blurDataURL={thumbnail}
-              width={1200}
+              width={800}
               height={684}
               alt={'article cover'}
               priority
@@ -72,7 +72,7 @@ const ArticlePage = ({
               <Fragment key={block.id}>{renderBlocks(block)}</Fragment>
             ))}
           </div>
-          <div className="py-12 border-t px-8">
+          <div className="py-12 border-t">
             <Container>
               <div className="flex items-center justify-between my-8">
                 <div className="text-3xl font-bold text-gray-900">احدث الالعاب</div>
@@ -82,7 +82,7 @@ const ArticlePage = ({
                   </span>
                 </Link>
               </div>
-              <div className="grid gap-10 lg:gap-12 md:grid-cols-3  sm:grid-cols-2">
+              <div className="grid gap-10 lg:gap-12 md:grid-cols-3  sm:grid-cols-">
                 {moreArticles.map(article => (
                   <ArticleCard article={article} key={article.id} />
                 ))}
