@@ -28,10 +28,10 @@ export default function Index(props) {
       </div>
       <Container>
         <div className="py-8">
-          <div className="my-8 text-3xl font-bold text-gray-900">
+          <div className="my-8 text-3xl font-bold text-gray-900  px-8">
             {!selectedTag ? 'كل الالعاب' : `${selectedTag}`}
           </div>
-          <div className="grid gap-10 lg:gap-12 sm:grid-cols-2">
+          <div className="grid gap-10 lg:gap-12  md:grid-cols-3  sm:grid-cols-2 px-8">
             {filteredArticles.map(article => (
               <ArticleCard article={article} key={article.id} />
             ))}

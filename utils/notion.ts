@@ -105,7 +105,7 @@ export const getMoreArticlesToSuggest = async (databaseId, currentArticleTitle) 
     mapArticleProperties(article)
   );
 
-  return shuffleArray(moreArticles).slice(0, 2);
+  return shuffleArray(moreArticles).slice(0, 3);
 };
 
 export function shuffleArray(array: Array<any>) {
