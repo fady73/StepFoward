@@ -6,11 +6,12 @@ export default function Document() {
   return (
     <Html lang="ar" dir="rtl">
       <Script
+        id="my-script"
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=G-KQ7JK87CF9`}
       />
 
-      <Script strategy="lazyOnload">
+      <Script strategy="lazyOnload" id="my-script2">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
