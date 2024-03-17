@@ -11,11 +11,13 @@ export default function Document() {
         {/* enable analytics script only for production */}
         {
           <>
-            <script
+            <Script
               async
+              id="google"
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
             />
-            <script
+            <Script
+              id="google-analytics"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: `
