@@ -1,14 +1,15 @@
-import { Fragment } from 'react';
-import Link from 'next/link';
 import { getAllArticles, getArticlePageData, getOneArticles } from 'utils/notion';
-import { Layout } from 'layouts/Layout';
-import Image from 'next/image';
-import { renderBlocks } from 'components/blocks/renderBlocks';
-import getLocalizedDate from 'utils/getLocalizedDate';
-import Container from 'components/Container';
-import slugify from 'slugify';
-import siteData from 'siteData';
+
 import ArticleCard from 'components/ArticleCard';
+import Container from 'components/Container';
+import { Fragment } from 'react';
+import Image from 'next/image';
+import { Layout } from 'layouts/Layout';
+import Link from 'next/link';
+import getLocalizedDate from 'utils/getLocalizedDate';
+import { renderBlocks } from 'components/blocks/renderBlocks';
+import siteData from 'siteData';
+import slugify from 'slugify';
 
 const ArticlePage = ({
   content,
@@ -55,7 +56,7 @@ const ArticlePage = ({
             </div>
           </div>
 
-          <div className="max-w-5xl px-6 mx-auto my-16 md:px-8">
+          <div className="max-w-5xl px-2 mx-auto my-16 md:px-28">
             <Image
               className="rounded-lg aspect-video"
               src={thumbnail}
@@ -72,9 +73,9 @@ const ArticlePage = ({
               <Fragment key={block.id}>{renderBlocks(block)}</Fragment>
             ))}
           </div>
-          <div className="py-12 border-t">
+          <div className="py-12 border-t px-4">
             <Container>
-              <div className="flex items-center justify-between my-8">
+              <div className="flex items-center justify-between my-8 ">
                 <div className="text-3xl font-bold text-gray-900">احدث الالعاب</div>
                 <Link href="/">
                   <span className="font-semibold text-gray-900 cursor-pointer">
@@ -121,7 +122,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
   return {
     props: result,
-    revalidate: 1
+    revalidate: 60
   };
 };
 
