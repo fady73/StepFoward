@@ -1,13 +1,13 @@
+import Container from './Container';
 import Image from 'next/image';
 import siteData from 'siteData';
-import Container from './Container';
 
 export default function HeroHeader({ blog }: any) {
   return (
     <div className="py-24 text-center bg-gray-100">
       <Container>
         {siteData?.profileUrl && (
-          <Image
+          <img
             src={siteData.profileUrl}
             className="mx-auto "
             width={150}

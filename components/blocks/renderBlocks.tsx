@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
-import Image from 'next/image';
-import Text from 'components/blocks/Text';
+
 import AnchorLink from 'components/blocks/AnchorLink';
 import CodeBlock from 'components/blocks/CodeBlock';
+import Image from 'next/image';
+import Text from 'components/blocks/Text';
 
 export function renderBlocks(block) {
   const { type, id } = block;
@@ -80,8 +81,8 @@ export function renderBlocks(block) {
       const caption = value.caption.length >= 1 ? value.caption[0].plain_text : '';
       return (
         <figure className="mt-0">
-          <div className="w-full relative pt-[100%]">
-            <Image
+          <div className="w-full relative ">
+            <img
               src={src}
               alt="profile"
               objectFit="cover"

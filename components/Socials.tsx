@@ -1,5 +1,7 @@
-import siteData from 'siteData';
+/* eslint-disable @next/next/no-img-element */
+
 import Image from 'next/image';
+import siteData from 'siteData';
 
 export default function Socials() {
   const socials = [
@@ -21,7 +23,7 @@ export default function Socials() {
           rel="noreferrer"
         >
           <span className="sr-only">{item.name}</span>
-          <Image src={item.icon} alt="social-icon" width={40} height={40} />
+          <img src={item.icon} alt="social-icon" width={40} height={40} />
         </a>
       ))}
     </div>

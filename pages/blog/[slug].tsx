@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { getAllArticles, getArticlePageData, getOneArticles } from 'utils/notion';
 
 import ArticleCard from 'components/ArticleCard';
@@ -36,7 +38,7 @@ const ArticlePage = ({
         ogUrl={`/blog/${slug}`}
       >
         <div>
-          <div className="px-6 py-16 pt-16 pb-48 mx-auto -mb-48 text-center bg-gray-100 md:pb-96 md:-mb-96">
+          <div className="px-6 py-16 pt-16 pb-48 mx-auto -mb-48 text-center bg-gray-100 ">
             <div className="max-w-3xl mx-auto">
               <div className="sm:flex items-center justify-center mb-2 space-x-2 text-sm text-gray-500">
                 <div className="">{publishedOn}</div>
@@ -56,16 +58,19 @@ const ArticlePage = ({
             </div>
           </div>
 
-          <div className="max-w-5xl px-2 mx-auto my-16 md:px-28">
-            <Image
-              className="rounded-lg aspect-video"
+          <div className=" px-2 mx-auto my-16 	" >
+            <img
+            style={{
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto"
+            }}
+              className="rounded-lg aspect-video text-center"
               src={thumbnail}
-              placeholder="blur"
-              blurDataURL={thumbnail}
-              width={800}
-              height={684}
+              width={500}
+              height={500}
               alt={'article cover'}
-              priority
+              
             />
           </div>
           <div className="max-w-4xl px-6 mx-auto mb-24 space-y-1 md:px-8">

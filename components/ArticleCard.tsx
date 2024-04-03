@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { Article } from 'utils/types';
 import Image from 'next/image';
 import getLocalizedDate from 'utils/getLocalizedDate';
@@ -24,13 +26,9 @@ export default function ArticleCard({ article }: Props) {
             ))}
           </div>
           <div className=" filter contrast-[0.9]">
-            <Image
+            <img
               className="object-cover w-full h-48 transition rounded-lg aspect-video group-hover:opacity-90 bg-gray-50"
               src={article.thumbnail}
-              blurDataURL={article.thumbnail}
-              placeholder="blur"
-              width={800}
-              height={400}
               alt={'article cover'}
             />
           </div>
