@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import React, { Fragment } from 'react';
 
 import AnchorLink from 'components/blocks/AnchorLink';
@@ -85,8 +87,6 @@ export function renderBlocks(block) {
             <img
               src={src}
               alt="profile"
-              objectFit="cover"
-              layout="fill"
               className="w-full h-full top-0 left-0 object-cover rounded-2xl"
             />
           </div>

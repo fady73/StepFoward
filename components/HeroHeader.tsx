@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import Container from './Container';
 import Image from 'next/image';
 import siteData from 'siteData';
