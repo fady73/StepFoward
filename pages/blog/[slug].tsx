@@ -20,14 +20,13 @@ const ArticlePage = ({
   publishedDate,
   lastEditedAt,
   summary,
-  moreArticles
+  moreArticles,
+  imageSrc
 }) => {
   const publishedOn = getLocalizedDate(publishedDate);
   const modifiedDate = getLocalizedDate(lastEditedAt);
-
+  console.log(imageSrc);
   const slug = slugify(title).toLowerCase();
-
-  console.log(thumbnail);
 
   return (
     <>
@@ -58,19 +57,18 @@ const ArticlePage = ({
             </div>
           </div>
 
-          <div className=" px-2 mx-auto my-16 	" >
+          <div className=" px-2 mx-auto my-16 	">
             <img
-            style={{
-              display: "block",
-              marginLeft: "auto",
-              marginRight: "auto"
-            }}
+              style={{
+                display: 'block',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+              }}
               className="rounded-lg aspect-video text-center"
               src={thumbnail}
               width={500}
               height={500}
               alt={'article cover'}
-              
             />
           </div>
           <div className="max-w-4xl px-6 mx-auto mb-24 space-y-1 md:px-8">

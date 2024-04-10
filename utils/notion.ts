@@ -51,12 +51,11 @@ export const mapArticleProperties = article => {
     categories:
       properties?.categories?.multi_select.map((category: any) => category.name) || [],
     thumbnail:
-      properties?.thumbnail?.files[0]?.file?.url ||
-      properties?.thumbnail?.files[0]?.external?.url ||
-      '/image-background.png',
+    properties?.imageSrc.rich_text[0]?.plain_text ?? '',
     publishedDate: properties?.published?.date?.start,
     lastEditedAt: properties?.LastEdited?.last_edited_time,
     summary: properties?.summary.rich_text[0]?.plain_text ?? '',
+    imageSrc: properties?.imageSrc.rich_text[0]?.plain_text ?? '',
     slug: properties?.slug.rich_text[0]?.plain_text ?? ''
   };
 };
