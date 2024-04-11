@@ -6,6 +6,7 @@ import Category from 'components/Category';
 import Container from 'components/Container';
 import HeroHeader from 'components/HeroHeader';
 import { Layout } from 'layouts/Layout';
+import PDFViewer from 'components/PDFViewer';
 import { filterArticles } from 'utils/filterArticles';
 
 export default function Index(props) {
@@ -27,6 +28,9 @@ export default function Index(props) {
           />
         ))}
       </div>
+      <div>   
+    </div>
+    
       <Container>
         <div className="py-8">
           <div className="my-8 text-3xl font-bold text-gray-900  px-8">
