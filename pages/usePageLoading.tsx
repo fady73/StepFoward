@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import Router from 'next/router';
 
-export const usePageLoading = () => {
+const usePageLoading = () => {
     const [isPageLoading, setIsPageLoading] = useState(false);
 
     useEffect(() => {
@@ -23,3 +23,5 @@ export const usePageLoading = () => {
     }, []);
     return  isPageLoading ;
 };
+
+export default  usePageLoading;
