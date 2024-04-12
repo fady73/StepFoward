@@ -1,7 +1,10 @@
 import { Layout } from 'layouts/Layout';
 import PDFViewer from 'components/PDFViewer';
+import { useState } from 'react';
 
 export default function Index(props) {
+  const [loading, setLoading] = useState(true);
+
   return (
     <Layout title={'كتاب 500 لعبه'} description={'summary'} ogUrl={`/book`}>
       <div className=" bg-gray-100">
@@ -14,9 +17,13 @@ export default function Index(props) {
               تقدر تحمله من هنا
             </a>
           </h2>
+         {loading && <h2 className="text-lg pr-6">
+            {' '}
+           انتظر قليلا حتى يتم تحميل الكتاب 
+          </h2>}
         </div>
         <div style={{ marginTop: '20px' }}>
-          <PDFViewer />
+          <PDFViewer setLoading={setLoading} />
         </div>
       </div>
     </Layout>

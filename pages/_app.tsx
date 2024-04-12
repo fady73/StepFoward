@@ -3,7 +3,6 @@ import 'styles/globals.css';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { Toaster } from 'react-hot-toast';
-import { Worker } from '@react-pdf-viewer/core';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -32,10 +31,8 @@ export default function App({ Component, pageProps }: AppProps) {
   `}
       </Script>
       <Toaster />
-      <Worker workerUrl="../assets/pdf.worker.min.js">
-
+      
       <Component {...pageProps} />;
-      </Worker>
     </>
   );
 }

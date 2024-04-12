@@ -7,9 +7,8 @@ import React, { useEffect, useState } from 'react';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
 
-const PDFViewer = () => {
+const PDFViewer = ({setLoading}) => {
   const [viewPdf, setViewPdf] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   console.log(viewPdf);
 
@@ -53,18 +52,24 @@ const PDFViewer = () => {
     }
   });
 //  if(loading)  return "loading"
+const renderLoading=(percentages: number) => {
+  if(percentages<100){
+    setLoading(true)
+  }else{setLoading(false)}
+return  (
+  <div style={{ width: '240px' }}>
+      <ProgressBar progress={Math.round(percentages)} />
+  </div>
+)};
   return (
     <div className="text-center">
       {/* this viewer only show in desktop mode */}
+      <Worker workerUrl="../assets/pdf.worker.min.js">
         <div className={` w-full mx-auto h-screen hidden md:block`}>
           {viewPdf && (
             <>
               <Viewer
-                   renderLoader={(percentages: number) => (
-                    <div style={{ width: '240px' }}>
-                        <ProgressBar progress={Math.round(percentages)} />
-                    </div>
-                )}
+                   renderLoader={renderLoading}
             
                 fileUrl={viewPdf}
                 plugins={[newPlugin]}
@@ -83,15 +88,12 @@ const PDFViewer = () => {
                 plugins={[newPlugin]}
                 theme="dark"
                 defaultScale={0.4}
-                renderLoader={(percentages: number) => (
-                  <div style={{ width: '240px' }}>
-                      <ProgressBar progress={Math.round(percentages)} />
-                  </div>
-              )}
+                renderLoader={renderLoading}
               />
             </>
           )}
         </div>
+      </Worker>
     </div>
   );
 };
