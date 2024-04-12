@@ -56,7 +56,6 @@ const PDFViewer = () => {
   return (
     <div className="text-center">
       {/* this viewer only show in desktop mode */}
-      <Worker workerUrl="../assets/pdf.worker.min.js">
         <div className={` w-full mx-auto h-screen hidden md:block`}>
           {viewPdf && (
             <>
@@ -88,7 +87,6 @@ const PDFViewer = () => {
             </>
           )}
         </div>
-      </Worker>
     </div>
   );
 };
