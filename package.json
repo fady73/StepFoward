@@ -28,6 +28,7 @@
     "copy-to-clipboard": "^3.3.3",
     "next": "^12.3.4",
     "next-api-og-image": "^4.3.0",
+    "nextjs-progressbar": "^0.0.16",
     "pdfjs-dist": "^3.11.174",
     "prism-react-renderer": "^1.3.5",
     "react": "^18.2.0",
