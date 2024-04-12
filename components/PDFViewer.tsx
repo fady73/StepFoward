@@ -58,23 +58,19 @@ const PDFViewer = () => {
     <div className="text-center">
       {/* this viewer only show in desktop mode */}
       <div className={` w-full mx-auto h-screen hidden md:block`}>
-        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-          {
-            viewPdf && <>
-              <Viewer fileUrl={viewPdf} plugins={[newPlugin]} theme="dark" defaultScale={1} />
-            </>
-          }
-        </Worker>
+        
+           { viewPdf && <>
+              <Viewer   fileUrl={viewPdf} plugins={[newPlugin]} theme="dark" defaultScale={1} />
+            </>}
+         
       </div>
       {/* this viewer only show in mobile mode */}
       <div className={`w-full mx-auto h-screen md:hidden`}>
-        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
           {
             viewPdf && <>
               <Viewer fileUrl={viewPdf} plugins={[newPlugin]} theme="dark" defaultScale={0.4} />
             </>
           }
-        </Worker>
       </div>
     </div>
   );
