@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
 
-const PDFViewer = ({setLoading}) => {
+const PDFViewer = ({setLoading,setLoadnumber}) => {
   const [viewPdf, setViewPdf] = useState(null);
 
   console.log(viewPdf);
@@ -54,8 +54,10 @@ const PDFViewer = ({setLoading}) => {
 //  if(loading)  return "loading"
 const renderLoading=(percentages: number) => {
   if(percentages<100){
+    setLoadnumber
     setLoading(true)
   }else{setLoading(false)}
+  setLoadnumber(Math.round(percentages))
 return  (
   <div style={{ width: '240px' }}>
       <ProgressBar progress={Math.round(percentages)} />

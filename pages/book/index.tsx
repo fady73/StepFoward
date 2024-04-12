@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export default function Index(props) {
   const [loading, setLoading] = useState(true);
+  const [loadnumber, setLoadnumber] = useState(0);
 
   return (
     <Layout title={'كتاب 500 لعبه'} description={'summary'} ogUrl={`/book`}>
@@ -21,9 +22,17 @@ export default function Index(props) {
             {' '}
            انتظر قليلا حتى يتم تحميل الكتاب 
           </h2>}
+          {
+             loading && <div className="bg-white rounded-xl shadow-sm overflow-hidden p-1">
+              <div className="relative h-6 flex items-center justify-center">
+                <div style={{width:`${loadnumber}%`}} className={`absolute top-0 bottom-0 left-0 rounded-lg  bg-blue-200`}></div>
+                <div className="relative text-blue-900 font-medium text-sm">{loadnumber}%</div>
+              </div>
+            </div>
+          }
         </div>
         <div style={{ marginTop: '20px' }}>
-          <PDFViewer setLoading={setLoading} />
+          <PDFViewer setLoading={setLoading} setLoadnumber={setLoadnumber} />
         </div>
       </div>
     </Layout>
