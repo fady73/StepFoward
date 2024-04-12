@@ -2,6 +2,7 @@
 
 import { Article } from 'utils/types';
 import Image from 'next/image';
+import Link from 'next/link';
 import getLocalizedDate from 'utils/getLocalizedDate';
 
 type Props = {
@@ -12,7 +13,7 @@ export default function ArticleCard({ article }: Props) {
   const formattedTime = getLocalizedDate(article.publishedDate);
 
   return (
-    <a href={`/blog/${article.slug}`}>
+    <Link href={`/blog/${article.slug}`}>
       <div className="flex flex-col overflow-hidden cursor-pointer group">
         <div className="relative">
           <div className="absolute">
@@ -51,6 +52,6 @@ export default function ArticleCard({ article }: Props) {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
