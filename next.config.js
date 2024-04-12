@@ -1,3 +1,5 @@
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   webpack: (config, { isServer }) => {
     // For server-side rendering (isServer), exclude the canvas.node file from the bundle
