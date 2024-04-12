@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app';
 import NextNProgress from 'nextjs-progressbar';
 import Script from 'next/script';
 import { Toaster } from 'react-hot-toast';
-import { usePageLoading } from './usePageLoading';
 
 export default function App({ Component, pageProps }: AppProps) {
 
