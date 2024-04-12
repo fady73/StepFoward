@@ -1,8 +1,8 @@
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
+import { ProgressBar, ScrollMode, SpecialZoomLevel, Viewer, Worker } from '@react-pdf-viewer/core';
 import React, { useEffect, useState } from 'react';
-import { ScrollMode, SpecialZoomLevel, Viewer, Worker } from '@react-pdf-viewer/core';
 
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
@@ -61,11 +61,12 @@ const PDFViewer = () => {
           {viewPdf && (
             <>
               <Viewer
-                renderLoader={per => {
-                  if (per < 100) {
-                    return <div className='text-white'>loading the file</div>
-                  } 
-                }}
+                   renderLoader={(percentages: number) => (
+                    <div style={{ width: '240px' }}>
+                        <ProgressBar progress={Math.round(percentages)} />
+                    </div>
+                )}
+            
                 fileUrl={viewPdf}
                 plugins={[newPlugin]}
                 theme="dark"
