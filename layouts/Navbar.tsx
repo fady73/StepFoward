@@ -37,7 +37,7 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/" passHref>
                     <div className="sm:text-lg md:text-xl font-bold 		 cursor-pointer">
-                      {siteData?.author}
+                      {siteData?.headerTitle}
                     </div>
                   </Link>
                 </div>
