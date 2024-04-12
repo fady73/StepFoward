@@ -10,7 +10,7 @@ export default function Index(props) {
     <Layout title={'كتاب 500 لعبه'} description={'summary'} ogUrl={`/book`}>
       <div className=" bg-gray-100">
         <div style={{ paddingTop: '20px' }}>
-          <h2 className="text-lg pr-6">
+          <h2 className="text-lg pr-6 px-2">
             {' '}
             ده كتاب فى 500 لعبه مناسبه للحفلات والايام الروحيه الخاصه بمدارس الاحد الكتاب
             اعداد الاخت ساميه برتى ربنا يبارك تعبها ويثمر فى خدمه مدارس الاحد{' '}
@@ -18,7 +18,7 @@ export default function Index(props) {
               تقدر تحمله من هنا
             </a>
           </h2>
-         {loading && <h2 className="text-lg pr-6">
+         {loading && <h2 className="text-lg pr-6 px-2">
             {' '}
            انتظر قليلا حتى يتم تحميل الكتاب 
           </h2>}
