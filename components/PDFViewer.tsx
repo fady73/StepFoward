@@ -83,6 +83,11 @@ const PDFViewer = () => {
                 plugins={[newPlugin]}
                 theme="dark"
                 defaultScale={0.4}
+                renderLoader={(percentages: number) => (
+                  <div style={{ width: '240px' }}>
+                      <ProgressBar progress={Math.round(percentages)} />
+                  </div>
+              )}
               />
             </>
           )}
