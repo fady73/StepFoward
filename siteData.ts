@@ -1,7 +1,8 @@
 const siteData = {
   title: 'Step Forward',
-  author: 'Step Forward - خطوة للامام',
+  author: 'Step Forward',
   headerTitle: 'Step Forward - خطوة للامام',
+  description:"خطوة للامام",
   profileUrl: '/logo.png',
   headerDescription: '😄 to draw smile on your face ',
   footerText: ' جميع الحقوق محفوظة لمجموعة الخدمة بالرياضة خطوة للامام © ',
