@@ -19,6 +19,8 @@ export default function Index(props) {
   return (
     <Layout>
       <HeroHeader />
+
+   
       <div className="flex flex-wrap justify-center gap-4 mt-8">
      
         {allCategories.map(tag => (
@@ -29,14 +31,17 @@ export default function Index(props) {
             setSelectedTag={setSelectedTag}
           />
         ))}
-         <Link passHref key={'test'} href={'/book'}>
+       
+      </div>
+      <div className='flex flex-wrap justify-center gap-4 mt-4'>
+      <Link passHref key={'test'} href={'/book'}>
         <div
           className={
             'text-gray-900 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
           }
         >
           {' '}
-          كتاب 500 لعبه{' '}
+          كتاب 500 لعبه
         </div>
       </Link>
       </div>
