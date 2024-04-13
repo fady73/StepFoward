@@ -6,6 +6,7 @@ import Category from 'components/Category';
 import Container from 'components/Container';
 import HeroHeader from 'components/HeroHeader';
 import { Layout } from 'layouts/Layout';
+import Link from 'next/link';
 import PDFViewer from 'components/PDFViewer';
 import { filterArticles } from 'utils/filterArticles';
 
@@ -19,6 +20,7 @@ export default function Index(props) {
     <Layout>
       <HeroHeader />
       <div className="flex flex-wrap justify-center gap-4 mt-8">
+     
         {allCategories.map(tag => (
           <Category
             tag={tag}
@@ -27,6 +29,16 @@ export default function Index(props) {
             setSelectedTag={setSelectedTag}
           />
         ))}
+         <Link passHref key={'test'} href={'/book'}>
+        <div
+          className={
+            'text-gray-900 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
+          }
+        >
+          {' '}
+          كتاب 500 لعبه{' '}
+        </div>
+      </Link>
       </div>
       <div>   
     </div>
