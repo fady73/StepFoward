@@ -5,7 +5,6 @@ import {
   isNotionClientError
 } from '@notionhq/client';
 
-import { NotionDatabase } from '@syneki/notion-cms';
 import slugify from 'slugify';
 
 export const notion = new Client({
