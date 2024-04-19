@@ -101,7 +101,7 @@ const ArticlePage = ({
 
 export const getStaticPaths = async () => {
   const paths = [];
-  const data: any = await getAllArticles(process.env.BLOG_DATABASE_ID);
+  const data: any = await getAllArticles(undefined);
 
   data.forEach(result => {
     if (result.object === 'page') {

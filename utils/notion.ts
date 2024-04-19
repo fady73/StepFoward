@@ -1,22 +1,57 @@
-import { Client } from '@notionhq/client';
+import { APIErrorCode, Client, ClientErrorCode, isNotionClientError } from '@notionhq/client';
+
+import { NotionDatabase } from '@syneki/notion-cms';
 import slugify from 'slugify';
 
 export const notion = new Client({
   auth: process.env.NOTION_SECRET
 });
 
-export const getAllArticles = async databaseId => {
+export const getAllArticles = async (cursor) => {
+  try{
+
+  
   const response = await notion.databases.query({
-    database_id: databaseId,
+    database_id: process.env.BLOG_DATABASE_ID,
     filter: {
       property: 'status',
       select: {
         equals: '✅ Published'
       }
-    }
-  });
+    
+    },
+    page_size:Number(process.env.NEXT_PUBLIC_TOTAL_PAGE_SIZE),
 
-  return response.results;
+    start_cursor:cursor,
+  });
+  return {
+    response: response.results,
+    hasMore: response.has_more,
+    nextCursor: response.next_cursor,
+  }
+} catch (error) {
+  if (isNotionClientError(error)) {
+    // error is now strongly typed to NotionClientError
+    console.log(error.code)
+
+    switch (error.code) {
+      case ClientErrorCode.RequestTimeout:
+        // ...
+        break
+      case APIErrorCode.ObjectNotFound:
+        // ...
+        break
+      case APIErrorCode.Unauthorized:
+        // ...
+        break
+      // ...
+      default:
+        // you could even take advantage of exhaustiveness checking
+        "error"
+    }
+  }
+
+}
 };
 
 export const getOneArticles = async (databaseId, slug) => {
