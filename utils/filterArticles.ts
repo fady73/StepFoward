@@ -10,4 +10,5 @@ export function filterArticles(articles, selectedTag) {
       }
       return article.categories.includes(selectedTag);
     });
+    
 }

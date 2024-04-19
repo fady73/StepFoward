@@ -5,6 +5,7 @@ import ArticleCard from 'components/ArticleCard';
 import Category from 'components/Category';
 import Container from 'components/Container';
 import HeroHeader from 'components/HeroHeader';
+import InfiniteScroll from 'react-infinite-scroller';
 import { Layout } from 'layouts/Layout';
 import Link from 'next/link';
 import PDFViewer from 'components/PDFViewer';
@@ -13,33 +14,59 @@ import { filterArticles } from 'utils/filterArticles';
 import { useRouter } from 'next/router';
 
 export default function Index(props) {
-  const router = useRouter();
   const [pageNumber, setPageNumber] = useState(1);
+  const [hasMore, setHasmore] = useState(true);
+  const [allArticle, setAllArticle] = useState([]);
+  const [selectedTag, setSelectedTag] = useState<string>(null);
+  const [allCategories, setAllCategories] = useState<any>([
+    'الكل',
+    'اطفال',
+    'اعدادى',
+    'شباب'
+  ]);
 
-  const { articles, categories, hasMore, nextCursor } = props;
-  useEffect(() => {
+  const [nextCursor, setNextCursor] = useState<any>('');
+  const router = useRouter();
+
+  const fetchNextPage = async () => {
     const { query } = router;
-    const pageCursor = query.cursor ? query.cursor.toString() : undefined;
-    fetchNextPage(pageCursor);
-  }, [router]);
-
-  const fetchNextPage = async (pageCursor?: string) => {
-    if (hasMore) {
-      await getAllArticles(pageCursor);
+    const selectedTag = query.selectedTag ? query.selectedTag.toString() : undefined;
+    let url = '';
+    console.log(selectedTag);
+    if (selectedTag !== 'الكل' && selectedTag) {
+      url = `${process.env.NEXT_PUBLIC_API_URL}/api/filter?nextCursor=${nextCursor}&selectedTag=${selectedTag}`;
+    } else {
+      url = `${process.env.NEXT_PUBLIC_API_URL}/api/post?nextCursor=${nextCursor}`;
     }
+    const data = await fetch(url, {
+      method: 'GET',
+
+      headers: {
+        'X-RapidAPI-Key': 'your-api-key',
+        'X-RapidAPI-Host': 'jokes-by-api-ninjas.p.rapidapi.com'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        setHasmore(data.hasMore);
+        setNextCursor(data.nextCursor);
+        const allArticleSet=new Set([...allArticle, ...data.articles])
+        setAllArticle(Array.from(allArticleSet))
+      });
   };
 
-  const handleLoadMore = () => {
-    const cursor = props.nextCursor;
-
+  useEffect(() => {
+    if(selectedTag){
+    setHasmore(true);
+    setNextCursor('');
+    setAllArticle([]);
     router.push({
       pathname: router.pathname,
-      query: { cursor }
+      query: { selectedTag }
     });
-  };
-  const [selectedTag, setSelectedTag] = useState<string>(null);
-  const filteredArticles = filterArticles(articles, selectedTag);
-  const [allCategories, setAllCategories] = useState<any>(['الكل', ...categories]);
+  }
+  }, [selectedTag]);
+
   return (
     <Layout>
       <HeroHeader />
@@ -66,58 +93,34 @@ export default function Index(props) {
           </div>
         </Link>
       </div>
-      <div></div>
 
       <Container>
-        <div className="py-8">
-          <div className="my-8 text-3xl font-bold text-gray-900  px-8">
-            {!selectedTag || selectedTag === 'الكل' ? 'كل الالعاب' : `${selectedTag}`}
-          </div>
-          <div className="grid gap-10 lg:gap-12  md:grid-cols-3  sm:grid-cols-2 px-8">
-            {filteredArticles.map(article => (
-              <ArticleCard article={article} key={article.id} />
-            ))}
-          </div>
-        </div>
         {
-          <Pagination
-            currentPage={pageNumber}
-            totalPages={Math.ceil(
-              Number(process.env.NEXT_PUBLIC_TOTAL_PAGE_NUMBER) /
-                Number(process.env.NEXT_PUBLIC_TOTAL_PAGE_SIZE)
-            )} // Calculate total pages based on data and page size
-            onPageChange={newPage => {
-              console.log(newPage);
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={() => {
               fetchNextPage();
-              handleLoadMore();
-              setPageNumber(newPage);
             }}
-          />
+            hasMore={hasMore}
+            loader={
+              <div className="text-center">
+                <span className="border-gray-300 h-20 w-20 animate-spin rounded-full inline-block	 border-8 border-t-blue-600"></span>
+              </div>
+            }
+          >
+            <div className="py-8">
+              <div className="my-8 text-3xl font-bold text-gray-900  px-8">
+                {!selectedTag || selectedTag === 'الكل' ? 'كل الالعاب' : `${selectedTag}`}
+              </div>
+              <div className="grid gap-10 lg:gap-12  md:grid-cols-3  sm:grid-cols-2 px-8">
+                {allArticle?.map(article => (
+                  <ArticleCard article={article} key={article.id} />
+                ))}
+              </div>
+            </div>
+          </InfiniteScroll>
         }
       </Container>
     </Layout>
   );
-}
-
-const fetchPageBlocks = (pageId: string) => {
-  return notion.blocks.children.list({ block_id: pageId }).then(res => res.results);
-};
-
-export async function getServerSideProps({ query }) {
-  const pageCursor = query.cursor ? query.cursor.toString() : undefined;
-  const data = await getAllArticles(pageCursor);
-  const { response, hasMore, nextCursor } = data;
-  const blocks = await fetchPageBlocks(response[0].id);
-
-  const { articles, categories } = convertToArticleList(response);
-  return {
-    props: {
-      data,
-      blocks,
-      articles,
-      categories,
-      hasMore,
-      nextCursor
-    }
-  };
 }

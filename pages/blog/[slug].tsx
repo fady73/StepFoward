@@ -25,7 +25,6 @@ const ArticlePage = ({
 }) => {
   const publishedOn = getLocalizedDate(publishedDate);
   const modifiedDate = getLocalizedDate(lastEditedAt);
-  console.log(imageSrc);
   const slug = slugify(title).toLowerCase();
 
   return (
@@ -104,10 +103,9 @@ const ArticlePage = ({
 export const getServerSideProps = async ({ params: { slug } }) => {
   const data = await getOneArticles(process.env.BLOG_DATABASE_ID, slug);
   const result = await getArticlePageData(data[0], slug, process.env.BLOG_DATABASE_ID);
-  console.log(result)
+
   return {
-    props: result,
-  };
+    props: result  };
 };
 
 export default ArticlePage;

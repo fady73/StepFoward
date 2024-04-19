@@ -38,6 +38,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.0",
     "react-hot-toast": "^2.4.1",
+    "react-infinite-scroller": "^1.2.6",
     "slugify": "^1.6.6",
     "vercel": "^33.5.5"
   },

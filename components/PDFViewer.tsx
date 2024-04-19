@@ -10,14 +10,11 @@ import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
 const PDFViewer = ({setLoading,setLoadnumber}) => {
   const [viewPdf, setViewPdf] = useState(null);
 
-  console.log(viewPdf);
-
   useEffect(() => {
     // Fetch the PDF file as a Blob or a File
     fetch('/sundaybook.pdf')
       .then(response => response.blob())
       .then(blob => {
-        console.log(blob);
         const reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onloadend = e => {

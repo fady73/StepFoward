@@ -41,7 +41,7 @@ export default function ArticleCard({ article }: Props) {
           </div>
           <div className="flex items-center mt-4">
             <div className="flex mb-2 space-x-1 text-sm text-gray-400">
-              {article.categories.map(category => (
+              {article?.categories?.map(category => (
                 <div key={category}>
                   <span className="font-semibold text-gray-600">{category} </span>
                   <span aria-hidden="true">&middot;</span>
