@@ -107,7 +107,6 @@ export async function getServerSideProps({ query }) {
   const pageCursor = query.cursor ? query.cursor.toString() : undefined;
   const data = await getAllArticles(pageCursor);
   const { response, hasMore, nextCursor } = data;
-  console.log(response);
   const blocks = await fetchPageBlocks(response[0].id);
 
   const { articles, categories } = convertToArticleList(response);

@@ -99,33 +99,14 @@ const ArticlePage = ({
   );
 };
 
-export const getStaticPaths = async () => {
-  const paths = [];
-  const data: any = await getAllArticles(undefined);
 
-  data.forEach(result => {
-    if (result.object === 'page') {
-      paths.push({
-        params: {
-          slug: slugify(result.properties?.slug.rich_text[0]?.plain_text).toLowerCase()
-        }
-      });
-    }
-  });
 
-  return {
-    paths,
-    fallback: 'blocking'
-  };
-};
-
-export const getStaticProps = async ({ params: { slug } }) => {
+export const getServerSideProps = async ({ params: { slug } }) => {
   const data = await getOneArticles(process.env.BLOG_DATABASE_ID, slug);
   const result = await getArticlePageData(data[0], slug, process.env.BLOG_DATABASE_ID);
-
+  console.log(result)
   return {
     props: result,
-    revalidate: 60
   };
 };
 
