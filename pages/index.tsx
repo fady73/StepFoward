@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { convertToArticleList, getAllArticles, notion } from 'utils/notion';
+import { getMessaging, onMessage } from 'firebase/messaging';
 
 import ArticleCard from 'components/ArticleCard';
 import Category from 'components/Category';
@@ -11,6 +12,7 @@ import Link from 'next/link';
 import PDFViewer from 'components/PDFViewer';
 import Pagination from '../components/Pagination';
 import { filterArticles } from 'utils/filterArticles';
+import {firebaseCloudMessaging} from "../utils/config";
 import { useRouter } from 'next/router';
 
 export default function Index(props) {
@@ -27,7 +29,31 @@ export default function Index(props) {
 
   const [nextCursor, setNextCursor] = useState<any>('');
   const router = useRouter();
+  const [fcmToken, setFcmToken] = useState<string|undefined>(undefined);
 
+  const getToken = async () => {
+    try {
+      const token = await firebaseCloudMessaging.init()
+      if (token) {
+        await firebaseCloudMessaging.getMessage()
+        setFcmToken(token)
+        console.log(token)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('message', (event) => console.log('event for the service worker', event))
+    }
+    async function setToken() {
+      await getToken()
+    }
+    setToken()
+  }, [])
+  
   const fetchNextPage = async () => {
     const { query } = router;
     const selectedTag = query.selectedTag ? query.selectedTag.toString() : undefined;
