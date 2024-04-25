@@ -5,9 +5,10 @@ import { Insights } from 'components/Insights';
 import NextNProgress from 'nextjs-progressbar';
 import Script from 'next/script';
 import { Toaster } from 'react-hot-toast';
+import dynamic from 'next/dynamic';
 
 export default function App({ Component, pageProps }: AppProps) {
-
+ 
 
   return (
     <>
@@ -35,9 +36,10 @@ export default function App({ Component, pageProps }: AppProps) {
   `}
       </Script>
       <Toaster />
+      <Insights />
+
       <NextNProgress color="#29D" startPosition={0.3} stopDelayMs={200} height={10} showOnShallow={true} />
        <Component {...pageProps} />
-       <Insights />
     </>
   );
 }

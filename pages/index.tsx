@@ -16,6 +16,7 @@ import {firebaseCloudMessaging} from "../utils/config";
 import { useRouter } from 'next/router';
 
 export default function Index(props) {
+
   const [pageNumber, setPageNumber] = useState(1);
   const [hasMore, setHasmore] = useState(true);
   const [allArticle, setAllArticle] = useState([]);
