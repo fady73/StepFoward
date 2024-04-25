@@ -14,7 +14,7 @@ export default function Index(props) {
             {' '}
             ده كتاب فى 500 لعبه مناسبه للحفلات والايام الروحيه الخاصه بمدارس الاحد الكتاب
             اعداد الاخت ساميه برتى ربنا يبارك تعبها ويثمر فى خدمه مدارس الاحد{' '}
-            <a href="/sundaybook.pdf" className="underline  underline-offset-1	text-sky-500	" target="_blank" rel="noopener noreferrer" download>
+            <a href="/sundaybooks.pdf" className="underline  underline-offset-1	text-sky-500	" target="_blank" rel="noopener noreferrer" download>
               تقدر تحمله من هنا
             </a>
           </h2>

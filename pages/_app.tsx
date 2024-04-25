@@ -1,7 +1,7 @@
 import 'styles/globals.css';
 
 import type { AppProps } from 'next/app';
-import { Insights } from '../components/insights';
+import { Insights } from '../components/Insights';
 import NextNProgress from 'nextjs-progressbar';
 import Script from 'next/script';
 import { Toaster } from 'react-hot-toast';
