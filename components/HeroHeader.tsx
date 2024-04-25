@@ -7,6 +7,9 @@ import siteData from 'siteData';
 export default function HeroHeader({ blog }: any) {
   return (
     <div className="py-24 text-center bg-gray-100">
+      
+
+
       <Container>
         {siteData?.profileUrl && (
           <img

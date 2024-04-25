@@ -23,9 +23,17 @@ export default function Index(props) {
            انتظر قليلا حتى يتم تحميل الكتاب 
           </h2>}
         
+          {
+             loading && <div className="bg-white rounded-xl shadow-sm overflow-hidden p-1">
+              <div className="relative h-6 flex items-center justify-center">
+                <div style={{width:`${loadnumber}%`}} className={`absolute top-0 bottom-0 left-0 rounded-lg  bg-blue-200`}></div>
+                <div className="relative text-blue-900 font-medium text-sm">{loadnumber}%</div>
+              </div>
+            </div>
+          }
         </div>
         <div style={{ marginTop: '20px' }}>
-          <PDFViewer  />
+          <PDFViewer setLoading={setLoading} setLoadnumber={setLoadnumber} />
         </div>
 
       </div>

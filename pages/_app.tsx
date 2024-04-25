@@ -1,5 +1,6 @@
 import 'styles/globals.css';
 
+import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
 import NextNProgress from 'nextjs-progressbar';
 import Script from 'next/script';
@@ -7,8 +8,6 @@ import { SpeedInsightsVercel } from 'components/SpeedInsightsVercel';
 import { Toaster } from 'react-hot-toast';
 
 export default function App({ Component, pageProps }: AppProps) {
- 
-
   return (
     <>
       {process.env.NEXT_PUBLIC_UMAMI_ID &&
@@ -35,9 +34,17 @@ export default function App({ Component, pageProps }: AppProps) {
   `}
       </Script>
       <Toaster />
-<SpeedInsightsVercel/>
-      <NextNProgress color="#29D" startPosition={0.3} stopDelayMs={200} height={10} showOnShallow={true} />
-       <Component {...pageProps} />
+      <SpeedInsightsVercel />
+      <Analytics />
+
+      <NextNProgress
+        color="#29D"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={10}
+        showOnShallow={true}
+      />
+      <Component {...pageProps} />
     </>
   );
 }
