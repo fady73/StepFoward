@@ -37,6 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Toaster />
       <NextNProgress color="#29D" startPosition={0.3} stopDelayMs={200} height={10} showOnShallow={true} />
        <Component {...pageProps} />
+       <Insights />
     </>
   );
 }
