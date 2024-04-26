@@ -151,3 +151,8 @@ export default function Index(props) {
     </Layout>
   );
 }
+export const getServerSideProps = async ({ params: { slug } }) => {
+  return {
+    revalidate:10 };
+
+};

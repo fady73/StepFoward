@@ -39,4 +39,10 @@ export default function Index(props) {
       </div>
     </Layout>
   );
+  
 }
+export const getServerSideProps = async ({ params: { slug } }) => {
+  return {
+    revalidate:3600 };
+
+};
