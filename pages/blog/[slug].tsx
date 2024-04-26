@@ -105,7 +105,7 @@ export const getServerSideProps = async ({ params: { slug } }) => {
   const result = await getArticlePageData(data[0], slug, process.env.BLOG_DATABASE_ID);
 
   return {
-    props: result,revalidate:60  };
+    props:{...result,revalidate:60 } };
 
 };
 

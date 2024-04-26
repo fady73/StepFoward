@@ -15,7 +15,7 @@ import { filterArticles } from 'utils/filterArticles';
 import {firebaseCloudMessaging} from "../utils/config";
 import { useRouter } from 'next/router';
 
-export default function Index(props) {
+const Index=(props)=> {
 
   const [pageNumber, setPageNumber] = useState(1);
   const [hasMore, setHasmore] = useState(true);
@@ -151,8 +151,10 @@ export default function Index(props) {
     </Layout>
   );
 }
-export const getServerSideProps = async ({ params: { slug } }) => {
+export const getStaticProps =  () => {
   return {
+    props:{},
     revalidate:10 };
 
 };
+export default Index;

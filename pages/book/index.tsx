@@ -2,7 +2,7 @@ import { Layout } from 'layouts/Layout';
 import PDFViewer from 'components/PDFViewer';
 import { useState } from 'react';
 
-export default function Index(props) {
+const Index=(props)=> {
   const [loading, setLoading] = useState(true);
   const [loadnumber, setLoadnumber] = useState(0);
 
@@ -41,8 +41,10 @@ export default function Index(props) {
   );
   
 }
-export const getServerSideProps = async ({ params: { slug } }) => {
+export const getStaticProps =  () => {
   return {
+    props:{},
     revalidate:3600 };
 
 };
+export default Index;
