@@ -57,16 +57,18 @@ const ArticlePage = ({
           </div>
 
           <div className=" px-2 mx-auto my-16 	">
-            <img
+            <Image
               style={{
-                display: 'block',
-                marginLeft: 'auto',
-                marginRight: 'auto'
+                borderRadius: "32px",
+                display: "block",
+                width: "30%",
+                margin: "0 auto",
               }}
               className="rounded-lg aspect-video text-center"
               src={thumbnail}
-              width={500}
-              height={500}
+              width={0}
+              height="0"
+              sizes="100vw"
               alt={'article cover'}
             />
           </div>
