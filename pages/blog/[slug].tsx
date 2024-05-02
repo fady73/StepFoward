@@ -61,7 +61,7 @@ const ArticlePage = ({
               style={{
                 borderRadius: "32px",
                 display: "block",
-                width: "30%",
+                width: "100%",
                 margin: "0 auto",
               }}
               className="rounded-lg aspect-video text-center"
