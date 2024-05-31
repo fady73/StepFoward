@@ -9,7 +9,7 @@ const InfiniteArticleScroll = ({ hasMore, fetchNextPage, allArticle, selectedTag
       loadMore={fetchNextPage}
       hasMore={hasMore}
       loader={
-        <div className="text-center">
+        <div className="text-center" key={0}>
           <span className="border-gray-300 h-20 w-20 animate-spin rounded-full inline-block border-8 border-t-blue-600"></span>
         </div>
       }

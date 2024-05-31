@@ -1,5 +1,4 @@
-import { getMessaging, onMessage } from 'firebase/messaging';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import CategoryList from 'components/home/CategoryList';
 import Container from 'components/Container';
@@ -9,8 +8,8 @@ import { Layout } from 'layouts/Layout';
 import Link from 'next/link';
 import NoData from 'components/home/NoData';
 import SearchBar from 'components/home/SearchBar';
-import debounce from 'lodash.debounce';
 import { firebaseCloudMessaging } from '../utils/config';
+import { sendEvent } from 'utils/analytic';
 import { useRouter } from 'next/router';
 
 const Index = props => {
@@ -108,6 +107,7 @@ const Index = props => {
     setNextCursor('');
     setAllArticle([]);
     setNoData(false);
+    sendEvent('search', searchQuery);
   };
 
   const handleOnChangeSearch = e => setSearchQuery(e.target.value);
@@ -118,6 +118,7 @@ const Index = props => {
     setNextCursor('');
     setAllArticle([]);
     setNoData(false);
+
     inputRef.current.value = '';
   };
 
