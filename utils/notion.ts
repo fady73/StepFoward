@@ -6,7 +6,6 @@ import {
 } from '@notionhq/client';
 
 import { createFilter } from './utlis';
-import slugify from 'slugify';
 
 export const notion = new Client({
   auth: process.env.NOTION_SECRET

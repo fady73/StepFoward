@@ -1,6 +1,20 @@
-// Helper function to create filters
-export const createFilter = (filter, searchQuery) => {
-    let filters = [
+// Define a custom type for the filter object
+interface Filter {
+    property: string;
+    select?: {
+      equals: string;
+    };
+    multi_select?: {
+      contains: string;
+    };
+    text?: {
+        contains: string;
+      };
+  }
+  
+  // Helper function to create filters
+  export const createFilter = (filter: string, searchQuery: string): { and: Filter[] } => {
+    let filters: Filter[] = [
       {
         property: 'status',
         select: {
@@ -11,7 +25,7 @@ export const createFilter = (filter, searchQuery) => {
   
     if (searchQuery) {
       filters.push({
-        property: 'title', // Adjust the property name to match your Notion database
+        property: 'title',
         text: {
           contains: searchQuery
         }
@@ -20,7 +34,7 @@ export const createFilter = (filter, searchQuery) => {
   
     if (filter) {
       filters.push({
-        property: 'categories', // Adjust the property name to match your Notion database
+        property: 'categories',
         multi_select: {
           contains: filter
         }
@@ -31,3 +45,4 @@ export const createFilter = (filter, searchQuery) => {
       and: filters
     };
   };
+  
