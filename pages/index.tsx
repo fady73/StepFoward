@@ -101,24 +101,20 @@ const Index = props => {
       setNoData(false);
       router.push({
         pathname: router.pathname,
-        query: { selectedTag, searchQuery }
+        query: { selectedTag }
       });
     }
-  }, [selectedTag, searchQuery]);
-
-  const debouncedSearch = useCallback(
-    debounce(query => {
-      setSearchQuery(query);
-      setHasmore(true);
-      setNextCursor('');
-      setAllArticle([]);
-    }, 300),
-    [] // 300ms delay
-  );
+  }, [selectedTag]);
 
   const handleSearch = e => {
-    debouncedSearch(e.target.value);
+    console.log(e);
+    setHasmore(true);
+    setNextCursor('');
+    setAllArticle([]);
+    setNoData(false);
   };
+
+  const handleOnChangeSearch = e => setSearchQuery(e.target.value);
 
   const handleClearSearch = () => {
     setSearchQuery('');
@@ -142,9 +138,10 @@ const Index = props => {
             type="text"
             placeholder="ابحث باسم اللعبه..."
             ref={inputRef}
-            onChange={handleSearch}
+            onChange={handleOnChangeSearch}
             className="px-4 py-2 border rounded-md outline-none focus:border-blue-500 w-full"
           />
+
           {searchQuery && (
             <button
               className="absolute inset-y-0 left-0 px-3 text-gray-500 focus:outline-none"
@@ -167,6 +164,12 @@ const Index = props => {
             </button>
           )}
         </div>
+        <button
+          onClick={() => handleSearch(searchQuery)}
+          className="bg-blue-500 text-white py-1 mr-3 px-6 rounded-md"
+        >
+          ابحث
+        </button>
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 mt-8">
@@ -194,8 +197,22 @@ const Index = props => {
 
       <Container>
         {noData ? (
-          <div className="text-center py-8">
-            <p className="text-gray-500">No articles found.</p>
+          <div className="flex items-center justify-center py-8">
+            <p className="text-gray-600 font-bold text-2xl">لا توجد ألعاب بهذا الاسم</p>
+            <svg
+              className="h-8 w-8 mt-4 mr-2  text-red-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 26 26"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="4"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </div>
         ) : (
           <InfiniteScroll

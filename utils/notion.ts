@@ -21,7 +21,7 @@ export const getAllArticles = async (cursor = undefined, filter = null,searchQue
   try {
     let response = await notion.databases.query({
       database_id: process.env.BLOG_DATABASE_ID,
-      filter: createFilter(filter, searchQuery)  as QueryDatabaseParameters['filter'],
+      filter: createFilter(filter, searchQuery) as QueryDatabaseParameters['filter'],
       page_size: Number(process.env.NEXT_PUBLIC_TOTAL_PAGE_SIZE),
       start_cursor: cursor
     });
