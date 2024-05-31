@@ -99,10 +99,6 @@ const Index = props => {
       setNextCursor('');
       setAllArticle([]);
       setNoData(false);
-      router.push({
-        pathname: router.pathname,
-        query: { selectedTag }
-      });
     }
   }, [selectedTag]);
 
@@ -121,10 +117,7 @@ const Index = props => {
     setHasmore(true);
     setNextCursor('');
     setAllArticle([]);
-    router.push({
-      pathname: router.pathname,
-      query: { selectedTag }
-    });
+
     setNoData(false);
     inputRef.current.value = '';
   };
