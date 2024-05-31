@@ -1,5 +1,5 @@
 import { getMessaging, onMessage } from 'firebase/messaging';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import ArticleCard from 'components/ArticleCard';
 import Category from 'components/Category';
@@ -13,6 +13,7 @@ import { firebaseCloudMessaging } from '../utils/config';
 import { useRouter } from 'next/router';
 
 const Index = props => {
+  const [pageNumber, setPageNumber] = useState(1);
   const [hasMore, setHasmore] = useState(true);
   const [allArticle, setAllArticle] = useState([]);
   const [selectedTag, setSelectedTag] = useState<string>(null);
@@ -25,8 +26,6 @@ const Index = props => {
   const [nextCursor, setNextCursor] = useState<any>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [noData, setNoData] = useState<boolean>(false);
-  const inputRef = useRef(null);
-
   const router = useRouter();
   const [fcmToken, setFcmToken] = useState<string | undefined>(undefined);
 
@@ -94,80 +93,42 @@ const Index = props => {
   };
 
   useEffect(() => {
-    if (selectedTag || searchQuery) {
+    if (selectedTag) {
       setHasmore(true);
       setNextCursor('');
       setAllArticle([]);
       setNoData(false);
       router.push({
         pathname: router.pathname,
-        query: { selectedTag, searchQuery }
+        query: { selectedTag }
       });
     }
-  }, [selectedTag, searchQuery]);
+  }, [selectedTag]);
 
   const debouncedSearch = useCallback(
     debounce(query => {
-      setSearchQuery(query);
       setHasmore(true);
       setNextCursor('');
       setAllArticle([]);
+
+      fetchNextPage();
     }, 300),
     [] // 300ms delay
   );
 
   const handleSearch = e => {
-    debouncedSearch(e.target.value);
-  };
-
-  const handleClearSearch = () => {
-    setSearchQuery('');
+    console.log(e);
     setHasmore(true);
     setNextCursor('');
     setAllArticle([]);
-    router.push({
-      pathname: router.pathname,
-      query: { selectedTag }
-    });
     setNoData(false);
-    inputRef.current.value = '';
   };
+
+  const handleOnChangeSearch = e => setSearchQuery(e.target.value);
 
   return (
     <Layout>
       <HeroHeader />
-      <div className="flex justify-center mt-4 mr-4 ml-4">
-        <div className="relative w-full max-w-md">
-          <input
-            type="text"
-            placeholder="ابحث باسم اللعبه..."
-            ref={inputRef}
-            onChange={handleSearch}
-            className="px-4 py-2 border rounded-md outline-none focus:border-blue-500 w-full"
-          />
-          {searchQuery && (
-            <button
-              className="absolute inset-y-0 left-0 px-3 text-gray-500 focus:outline-none"
-              onClick={handleClearSearch}
-            >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          )}
-        </div>
-      </div>
 
       <div className="flex flex-wrap justify-center gap-4 mt-8">
         {allCategories.map(tag => (
@@ -190,6 +151,21 @@ const Index = props => {
             كتاب 500 لعبه
           </div>
         </Link>
+      </div>
+
+      <div className="flex justify-center mt-4">
+        <input
+          type="text"
+          placeholder="ابحث باسم اللعبه..."
+          onChange={handleOnChangeSearch}
+          className="px-4 py-2 border rounded-l-md outline-none focus:border-blue-500 w-full"
+        />
+        <button
+          onClick={() => handleSearch(searchQuery)}
+          className="bg-blue-500 text-white py-2 px-4 rounded-r-md"
+        >
+          Search
+        </button>
       </div>
 
       <Container>

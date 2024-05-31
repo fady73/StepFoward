@@ -31,6 +31,7 @@
     "firebase": "^10.11.0",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.9.0",
+    "lodash.debounce": "^4.0.8",
     "next": "^13.0.0",
     "nextjs-progressbar": "^0.0.16",
     "pdfjs-dist": "^3.11.174",

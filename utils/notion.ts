@@ -5,6 +5,7 @@ import {
   isNotionClientError
 } from '@notionhq/client';
 
+import { createFilter } from './utlis';
 import slugify from 'slugify';
 
 export const notion = new Client({
@@ -16,16 +17,11 @@ export const notion = new Client({
             contains: "شباب",
           }, */
 
-export const getAllArticles = async (cursor = undefined, filter = null) => {
+export const getAllArticles = async (cursor = undefined, filter = null,searchQuery) => {
   try {
     let response = await notion.databases.query({
       database_id: process.env.BLOG_DATABASE_ID,
-      filter: {
-        property: 'status',
-        select: {
-          equals: '✅ Published'
-        }
-      },
+      filter: createFilter(filter, searchQuery),
       page_size: Number(process.env.NEXT_PUBLIC_TOTAL_PAGE_SIZE),
       start_cursor: cursor
     });
@@ -133,7 +129,9 @@ export const getMoreArticlesToSuggest = async (databaseId, currentArticleTitle) 
           text: {
             does_not_equal: currentArticleTitle
           }
-        }
+        },
+        
+        
       ]
     }
   });
