@@ -7,7 +7,8 @@ import siteData from 'siteData';
 
 const navigation = [
   { name: 'الصفحه الرئيسية', href: '/', current: false },
-  { name: 'كتاب 500 لعبه', href: '/book', current: false }
+  { name: 'كتاب 500 لعبه', href: '/book', current: false },
+  { name: 'شاركنا بالعاب', href: '/addGames', current: false }
 ];
 
 function classNames(...classes) {
@@ -64,9 +65,9 @@ export default function Navbar() {
           </div>
 
           <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-            <div className="grid h-full max-w-lg grid-cols-2 mx-auto font-medium">
+            <div className="grid h-full max-w-lg grid-cols-3  mx-auto font-medium">
               <Link
-                className="inline-flex flex-col items-center justify-center px-5 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600"
+                className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600"
                 passHref
                 href={navigation[0].href}
                 aria-current={navigation[0].current ? 'page' : undefined}
@@ -76,7 +77,7 @@ export default function Navbar() {
                   className="inline-flex flex-col items-center justify-center"
                 >
                   <svg
-                    className="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+                    className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -84,23 +85,23 @@ export default function Navbar() {
                   >
                     <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                   </svg>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
+                  <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
                     {navigation[0].name}
                   </span>
                 </button>
               </Link>
               <Link
-                className="inline-flex flex-col items-center justify-center px-5 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600"
+                className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600"
                 passHref
                 href={navigation[1].href}
                 aria-current={navigation[1].current ? 'page' : undefined}
               >
                 <button
                   type="button"
-                  className="inline-flex flex-col items-center justify-center "
+                  className="inline-flex flex-col items-center justify-center"
                 >
                   <svg
-                    className="w-6 h-6 text-gray-500 dark:text-gray-400"
+                    className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -115,8 +116,35 @@ export default function Navbar() {
                     />
                   </svg>
 
-                  <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
+                  <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
                     {navigation[1].name}
+                  </span>
+                </button>
+              </Link>
+              <Link
+                className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600"
+                passHref
+                href={navigation[2].href}
+                aria-current={navigation[2].current ? 'page' : undefined}
+              >
+                <button
+                  type="button"
+                  className="inline-flex flex-col items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+                    aria-hidden="true"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 1024 1024"
+                  >
+                    <path d="M512 936.916C277.327 936.916 87.084 746.672 87.084 512S277.327 87.083 512 87.083c234.677 0 424.917 190.244 424.917 424.916S746.677 936.916 512 936.916zm212.458-467.412H554.492V299.546h-84.984v169.958H299.542v84.992h169.966v169.966h84.984V554.496h169.966v-84.992z" />
+                  </svg>
+
+                  <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
+                    {navigation[2].name}
                   </span>
                 </button>
               </Link>
