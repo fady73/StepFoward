@@ -21,7 +21,8 @@ const GoogleForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm();
 
   const onSubmit = async (e: {
@@ -51,6 +52,7 @@ const GoogleForm: React.FC = () => {
         mode: 'no-cors'
       });
       toast.success('تم اضافه اللعبة بنجاح');
+      reset(); // Reset the form fields after successful submission
     } catch (error) {
       toast.error('فى مشكله حصلت');
     } finally {
@@ -61,7 +63,7 @@ const GoogleForm: React.FC = () => {
   return (
     <Layout title={'سجل العاب'} description={'اضف العاب'} ogUrl={`/addGames`}>
       <div className="min-h-screen bg-gray-100">
-        <ToastContainer />
+        <ToastContainer className={'r-0'} style={{ right: '0px' }} />
 
         {isLoading && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
