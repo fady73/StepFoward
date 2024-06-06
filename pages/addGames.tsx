@@ -18,7 +18,6 @@ const GoogleForm: React.FC = () => {
     gameImage: null as File | null
   });
   const [isLoading, setIsLoading] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
 
   const {
     register,
@@ -26,28 +25,10 @@ const GoogleForm: React.FC = () => {
     formState: { errors },
     reset
   } = useForm();
-
-  useEffect(() => {
-    const handleInputFocus = () => {
-      if (formRef.current) {
-        formRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    };
-
-    const inputFields = formRef.current?.querySelectorAll('input, textarea');
-    inputFields?.forEach(input => {
-      input.addEventListener('focus', handleInputFocus);
-    });
-
-    return () => {
-      inputFields?.forEach(input => {
-        input.removeEventListener('focus', handleInputFocus);
-      });
-    };
-  }, []);
+  const handleButtonClick = () => {
+    // Blur any input field to hide the keyboard
+    document.activeElement?.blur();
+  };
 
   const onSubmit = async (e: {
     gameName: '';
@@ -101,7 +82,7 @@ const GoogleForm: React.FC = () => {
                 شاركنا بافكارك والعاب جديدة
               </h2>
             </div>
-            <form className="mt-8 space-y-6" ref={formRef}>
+            <form className="mt-8 space-y-6">
               <div className="rounded-md bg-white shadow-md p-6">
                 <div className="mb-6">
                   <label
@@ -219,7 +200,10 @@ const GoogleForm: React.FC = () => {
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   disabled={isLoading}
-                  onClick={handleSubmit(onSubmit)}
+                  onClick={e => {
+                    handleButtonClick();
+                    handleSubmit(onSubmit)(e);
+                  }}
                 >
                   {isLoading ? 'ستتم الاضافة...' : 'اضف اللعبة'}
                 </button>
