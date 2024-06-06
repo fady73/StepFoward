@@ -1,6 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Layout } from 'layouts/Layout';
@@ -18,12 +18,36 @@ const GoogleForm: React.FC = () => {
     gameImage: null as File | null
   });
   const [isLoading, setIsLoading] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset
   } = useForm();
+
+  useEffect(() => {
+    const handleInputFocus = () => {
+      if (formRef.current) {
+        formRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    };
+
+    const inputFields = formRef.current?.querySelectorAll('input, textarea');
+    inputFields?.forEach(input => {
+      input.addEventListener('focus', handleInputFocus);
+    });
+
+    return () => {
+      inputFields?.forEach(input => {
+        input.removeEventListener('focus', handleInputFocus);
+      });
+    };
+  }, []);
 
   const onSubmit = async (e: {
     gameName: '';
@@ -77,7 +101,7 @@ const GoogleForm: React.FC = () => {
                 شاركنا بافكارك والعاب جديدة
               </h2>
             </div>
-            <form className="mt-8 space-y-6">
+            <form className="mt-8 space-y-6" ref={formRef}>
               <div className="rounded-md bg-white shadow-md p-6">
                 <div className="mb-6">
                   <label
