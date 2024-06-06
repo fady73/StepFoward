@@ -77,7 +77,7 @@ const GoogleForm: React.FC = () => {
                 شاركنا بافكارك والعاب جديدة
               </h2>
             </div>
-            <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+            <form className="mt-8 space-y-6">
               <div className="rounded-md bg-white shadow-md p-6">
                 <div className="mb-6">
                   <label
@@ -193,9 +193,9 @@ const GoogleForm: React.FC = () => {
 
               <div>
                 <button
-                  type="submit"
                   className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   disabled={isLoading}
+                  onClick={handleSubmit(onSubmit)}
                 >
                   {isLoading ? 'ستتم الاضافة...' : 'اضف اللعبة'}
                 </button>
