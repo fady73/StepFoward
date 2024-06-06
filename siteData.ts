@@ -8,11 +8,8 @@ const siteData = {
   footerText: ' جميع الحقوق محفوظة لمجموعة الخدمة بالرياضة خطوة للامام © ',
   language: 'ar-eg',
   locale: 'ar-eg',
-  ogBanner: 'https://nextjs-notion-blog-starter.vercel.app/preview/1.jpg',
-  github: 'https://github.com/tuanphungcz/nextjs-notion-blog-starter',
-  twitter: 'https://github.com/tuanphungcz/nextjs-notion-blog-starter',
-  websiteUrl: 'https://nextjs-notion-blog-starter.vercel.app',
-  linkedin: 'https://github.com/tuanphungcz/nextjs-notion-blog-starter',
+  ogBanner: 'https://step-forward-app.vercel.app/logo.jpg',
+  websiteUrl: 'https://play.google.com/store/apps/details?id=com.stepforward',
   facebook: 'https://www.facebook.com/stepforwardteam'
 };
 
