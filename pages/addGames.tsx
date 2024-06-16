@@ -25,10 +25,6 @@ const GoogleForm: React.FC = () => {
     formState: { errors },
     reset
   } = useForm();
-  const handleButtonClick = () => {
-    // Blur any input field to hide the keyboard
-    document.activeElement?.blur();
-  };
 
   const onSubmit = async (e: {
     gameName: '';
@@ -201,7 +197,6 @@ const GoogleForm: React.FC = () => {
                   className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   disabled={isLoading}
                   onClick={e => {
-                    handleButtonClick();
                     handleSubmit(onSubmit)(e);
                   }}
                 >
