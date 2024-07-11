@@ -3,23 +3,19 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { convertToArticleList, getAllFilterArticles, notion } from 'utils/notion';
 
-import { NextResponse } from 'next/server';
+import NextCors from 'nextjs-cors';
 
 const fetchPageBlocks = (pageId: string) => {
   return notion.blocks.children.list({ block_id: pageId }).then(res => res.results);
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const resw = NextResponse.next();
-
-  // add the CORS headers to the response
-  resw.headers.append('Access-Control-Allow-Credentials', 'true');
-  resw.headers.append('Access-Control-Allow-Origin', '*'); // replace this your actual origin
-  resw.headers.append('Access-Control-Allow-Methods', 'GET,DELETE,PATCH,POST,PUT');
-  resw.headers.append(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+  await NextCors(req, res, {
+    // Options
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
 
   const data = await getAllFilterArticles(
     req.query.nextCursor ? req.query.nextCursor : undefined,
