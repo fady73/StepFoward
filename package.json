@@ -11,7 +11,9 @@
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
-    "lint": "next lint"
+    "lint": "next lint",
+    "client": "http-server -p 3002 ./client"
+
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -49,6 +51,7 @@
     "web-vitals": "^4.0.1"
   },
   "devDependencies": {
+    "http-server": "^14.1.1",
     "@types/react": "^18.2.53",
     "autoprefixer": "^10.4.17",
     "copy-webpack-plugin": "^12.0.2",
