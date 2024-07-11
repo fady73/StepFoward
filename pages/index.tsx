@@ -72,8 +72,10 @@ const Index = props => {
       searchQuery
     };
     const queryString = buildQueryString(queryParams);
-    const url = `${window.location.href}/api/post?${queryString}`;
-
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/post${
+      queryString ? '?' + queryString : ''
+    }`;
+    console.log(url);
     const data = await fetch(url, {
       method: 'GET'
     })
