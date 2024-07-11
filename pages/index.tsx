@@ -6,6 +6,8 @@ import HeroHeader from 'components/HeroHeader';
 import InfiniteArticleScroll from 'components/home/InfiniteArticleScroll';
 import { Layout } from 'layouts/Layout';
 import Link from 'next/link';
+import { MetaHead } from 'layouts/MetaHead';
+import { NextSeo } from 'next-seo';
 import NoData from 'components/home/NoData';
 import SearchBar from 'components/home/SearchBar';
 import { firebaseCloudMessaging } from '../utils/config';
@@ -126,6 +128,25 @@ const Index = props => {
 
   return (
     <Layout>
+      <MetaHead description={'العاب لايام روحيه'} />
+      <NextSeo
+        title="فريق خطوة للامام"
+        description={'العاب لايام روحيه'}
+        openGraph={{
+          type: 'website',
+          url: 'https://www.step-forward.co/',
+          title: 'فريق خطوه للامام',
+          description: 'العاب لسن اعدادي',
+          images: [
+            {
+              url: 'https://www.step-forward.co/logo.jpg',
+              width: 800,
+              height: 600,
+              alt: 'Og Image Alt'
+            }
+          ]
+        }}
+      />
       <HeroHeader />
       <SearchBar
         searchQuery={searchQuery}

@@ -12,12 +12,12 @@ export function Layout(props) {
     ogUrl,
     title
   };
+  console.log('metaHeadProps', metaHeadProps);
 
   return (
     <>
-      <MetaHead {...metaHeadProps} />
       <Header />
-      <div >{children}</div>
+      <div>{children}</div>
       <Footer />
     </>
   );

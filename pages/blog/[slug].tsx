@@ -8,6 +8,8 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import { Layout } from 'layouts/Layout';
 import Link from 'next/link';
+import { MetaHead } from 'layouts/MetaHead';
+import { NextSeo } from 'next-seo';
 import getLocalizedDate from 'utils/getLocalizedDate';
 import { renderBlocks } from 'components/blocks/renderBlocks';
 import siteData from 'siteData';
@@ -35,6 +37,32 @@ const ArticlePage = ({
         date={new Date(publishedDate).toISOString()}
         ogUrl={`/blog/${slug}`}
       >
+        <NextSeo
+          title={title}
+          description="فريق خطوة للامام"
+          openGraph={{
+            type: 'website',
+            url: 'https://www.step-forward.co/',
+            title: 'فريق خطوه للامام',
+            description: 'العاب لسن اعدادي',
+            images: [
+              {
+                url: 'https://www.step-forward.co/logo.jpg',
+                width: 800,
+                height: 600,
+                alt: 'Og Image Alt'
+              }
+            ]
+          }}
+        />
+        <MetaHead
+          title={title}
+          description={'فريق خطوة للامام'}
+          date={new Date(publishedDate).toISOString()}
+          ogUrl={`/blog/${slug}`}
+          imageUrl={thumbnail}
+        />
+
         <div>
           <div className="px-6 py-16 pt-16 pb-48 mx-auto -mb-48 text-center bg-gray-100 ">
             <div className="max-w-3xl mx-auto">
@@ -59,10 +87,10 @@ const ArticlePage = ({
           <div className=" px-2 mx-auto my-16 	">
             <Image
               style={{
-                borderRadius: "32px",
-                display: "block",
-                width: "100%",
-                margin: "0 auto",
+                borderRadius: '32px',
+                display: 'block',
+                width: '100%',
+                margin: '0 auto'
               }}
               className="rounded-lg aspect-video text-center"
               src={thumbnail}
@@ -100,15 +128,13 @@ const ArticlePage = ({
   );
 };
 
-
-
 export const getServerSideProps = async ({ params: { slug } }) => {
   const data = await getOneArticles(process.env.BLOG_DATABASE_ID, slug);
   const result = await getArticlePageData(data[0], slug, process.env.BLOG_DATABASE_ID);
 
   return {
-    props:{...result,revalidate:60 } };
-
+    props: { ...result, revalidate: 60 }
+  };
 };
 
 export default ArticlePage;
