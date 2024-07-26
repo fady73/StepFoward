@@ -17,13 +17,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   });
 
-  console.log(req.query.searchQuery);
   const data = await getAllArticles(
     req.query.nextCursor ? req.query.nextCursor : undefined,
     req.query.selectedTag ? req.query.selectedTag : undefined,
     req.query.searchQuery ? req.query.searchQuery : undefined
   );
-  console.log('data', data);
 
   if (data.response.length !== 0) {
     const { response, hasMore, nextCursor } = data;

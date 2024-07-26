@@ -44,3 +44,16 @@ export type Language =
   | 'typescript'
   | 'wasm'
   | 'yaml';
+  export interface RegisterFormData {
+    email: string;
+    password: string;
+    photoIdFront: File;
+    photoIdBack: File;
+    isAdmin:boolean
+
+  }
+  
+  export interface ApiResponse {
+    message: string;
+    error?: string;
+  }

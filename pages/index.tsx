@@ -38,7 +38,6 @@ const Index = props => {
       if (token) {
         await firebaseCloudMessaging.getMessage();
         setFcmToken(token);
-        console.log(token);
       }
     } catch (error) {
       console.log(error);
@@ -77,7 +76,6 @@ const Index = props => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/post${
       queryString ? '?' + queryString : ''
     }`;
-    console.log(url);
     const data = await fetch(url, {
       method: 'GET'
     })
@@ -85,7 +83,6 @@ const Index = props => {
       .then(data => {
         setHasmore(data.hasMore);
         setNextCursor(data.nextCursor);
-        console.log(data);
         if (data.message && data.message.length != 0) {
           setNoData(true);
           setHasmore(false);
