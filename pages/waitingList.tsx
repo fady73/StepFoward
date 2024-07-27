@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { IUser } from '../models/user';
+import { Layout } from 'layouts/Layout';
 import { useRouter } from 'next/router';
 
 interface WaitingListProps {
@@ -84,67 +85,73 @@ const WaitingList = ({ initialUsers }: WaitingListProps) => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
-        Waiting List Users
-      </h1>
-      {loading ? (
-        <p className="text-center text-lg text-gray-600">Loading...</p>
-      ) : error ? (
-        <p className="text-center text-lg text-red-600">{error}</p>
-      ) : users.length === 0 ? (
-        <p className="text-center text-lg text-gray-600">No users in the waiting list.</p>
-      ) : (
-        <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
-          <thead className="bg-blue-500 text-white">
-            <tr>
-              <th className="py-3 px-4 border-b">Email</th>
-              <th className="py-3 px-4 border-b">Status</th>
-              <th className="py-3 px-4 border-b">Photo ID Front</th>
-              <th className="py-3 px-4 border-b">Photo ID Back</th>
-              <th className="py-3 px-4 border-b">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map(user => (
-              <tr key={user._id} className="hover:bg-gray-100">
-                <td className="py-3 px-4 border-b">{user.email}</td>
-                <td className="py-3 px-4 border-b">{user.status}</td>
-                <td className="py-3 px-4 border-b text-center">
-                  <img
-                    src={getImageUrl(user._id, 'front')}
-                    alt="Photo ID Front"
-                    className="rounded-lg max-w-xs mx-auto"
-                  />
-                </td>
-                <td className="py-3 px-4 border-b text-center">
-                  <img
-                    src={getImageUrl(user._id, 'back')}
-                    alt="Photo ID Back"
-                    className="rounded-lg max-w-xs mx-auto"
-                  />
-                </td>
-                <td className="py-3 px-4 border-b text-center">
-                  {user.status === 'waiting' ? (
-                    <button
-                      onClick={() => handleStatusChange(user._id)}
-                      className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 ${
-                        loadingUserId === user._id ? 'opacity-50 cursor-not-allowed' : ''
-                      }`}
-                      disabled={loadingUserId === user._id}
-                    >
-                      {loadingUserId === user._id ? 'Updating...' : 'Activate'}
-                    </button>
-                  ) : (
-                    <span className="text-gray-500">Already Active</span>
-                  )}
-                </td>
+    <Layout title={'الانتظار '} description={' الانتظار '} ogUrl={`/waitingList`}>
+      <div className="container mx-auto p-6">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Waiting List Users
+        </h1>
+        {loading ? (
+          <p className="text-center text-lg text-gray-600">Loading...</p>
+        ) : error ? (
+          <p className="text-center text-lg text-red-600">{error}</p>
+        ) : users.length === 0 ? (
+          <p className="text-center text-lg text-gray-600">
+            No users in the waiting list.
+          </p>
+        ) : (
+          <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+            <thead className="bg-blue-500 text-white">
+              <tr>
+                <th className="py-3 px-4 border-b">Email</th>
+                <th className="py-3 px-4 border-b">Status</th>
+                <th className="py-3 px-4 border-b">Photo ID Front</th>
+                <th className="py-3 px-4 border-b">Photo ID Back</th>
+                <th className="py-3 px-4 border-b">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+            </thead>
+            <tbody>
+              {users.map(user => (
+                <tr key={user._id} className="hover:bg-gray-100">
+                  <td className="py-3 px-4 border-b">{user.email}</td>
+                  <td className="py-3 px-4 border-b">{user.status}</td>
+                  <td className="py-3 px-4 border-b text-center">
+                    <img
+                      src={getImageUrl(user._id, 'front')}
+                      alt="Photo ID Front"
+                      className="rounded-lg max-w-xs mx-auto"
+                    />
+                  </td>
+                  <td className="py-3 px-4 border-b text-center">
+                    <img
+                      src={getImageUrl(user._id, 'back')}
+                      alt="Photo ID Back"
+                      className="rounded-lg max-w-xs mx-auto"
+                    />
+                  </td>
+                  <td className="py-3 px-4 border-b text-center">
+                    {user.status === 'waiting' ? (
+                      <button
+                        onClick={() => handleStatusChange(user._id)}
+                        className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 ${
+                          loadingUserId === user._id
+                            ? 'opacity-50 cursor-not-allowed'
+                            : ''
+                        }`}
+                        disabled={loadingUserId === user._id}
+                      >
+                        {loadingUserId === user._id ? 'Updating...' : 'Activate'}
+                      </button>
+                    ) : (
+                      <span className="text-gray-500">Already Active</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </Layout>
   );
 };
 
