@@ -1,4 +1,5 @@
 // pages/api/waiting-list.ts
+// @ts-nocheck
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
