@@ -18,6 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
 
   try {
+    // @ts-ignore
     const users = await User.find({ $or: [{ isAdmin: null }, { isAdmin: false }] }).lean();
     res.status(200).json(users);
   } catch (error) {
