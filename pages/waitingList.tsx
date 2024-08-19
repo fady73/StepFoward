@@ -69,6 +69,7 @@ const WaitingList = ({ initialUsers }: WaitingListProps) => {
         const updatedUsers = users.map(user =>
           user._id === userId ? { ...user, status: 'active' } : user
         );
+        // @ts-ignore
         setUsers(updatedUsers);
       } else {
         alert(result.error);
