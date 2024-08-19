@@ -16,12 +16,7 @@ export default function Document() {
   }, []);
   return (
     <Html lang="ar" dir="rtl">
-      <Head>
-        <meta
-          name="google-site-verification"
-          content="HecMw8hl1wcPFybL6XtKYCCU82PfsVdeBm4CsPUZtAE"
-        />
-      </Head>
+      <Head />
 
       <body>
         <Main />
