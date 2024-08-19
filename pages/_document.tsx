@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 export function reportWebVitas(metric: NextWebVitalsMetric) {
   reportWebVitals(metric);
+  console.log('metric', metric);
 }
 export default function Document() {
   useEffect(() => {
@@ -16,8 +17,12 @@ export default function Document() {
   }, []);
   return (
     <Html lang="ar" dir="rtl">
-      <Head />
-
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="HecMw8hl1wcPFybL6XtKYCCU82PfsVdeBm4CsPUZtAE"
+        />
+      </Head>
       <body>
         <Main />
 
