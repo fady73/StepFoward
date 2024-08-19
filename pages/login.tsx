@@ -80,7 +80,7 @@ const Login = () => {
               <input
                 type="password"
                 id="password"
-                placeholder="Password"
+                placeholder="كلمه المرور"
                 value={password}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setPassword(e.target.value)
