@@ -18,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     await dbConnect();
-
+// @ts-ignore
     const user = await User.findById(userId);
 
     if (!user) {
