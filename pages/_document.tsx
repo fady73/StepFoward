@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 
 export function reportWebVitas(metric: NextWebVitalsMetric) {
   reportWebVitals(metric);
-  console.log('metric', metric);
 }
 export default function Document() {
   useEffect(() => {
