@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { ApiResponse } from '../utils/types';
 import Cookie from 'js-cookie';
 import { Layout } from 'layouts/Layout';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import withAuth from 'lib/withAuth';
 
@@ -46,18 +47,23 @@ const Login = () => {
 
   return (
     <Layout title={'سجل الدخول'} description={' سجل الدخول'} ogUrl={`/login`}>
+      {isLoading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <span className="border-gray-300 h-20 w-20 animate-spin rounded-full inline-block border-8 border-t-blue-600"></span>
+        </div>
+      )}
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-          <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+          <h1 className="text-2xl font-bold mb-6 text-center"> تسجيل الدخول</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
+                البريد الالكترونى
               </label>
               <input
                 type="email"
                 id="email"
-                placeholder="Email"
+                placeholder="البريد الالكترونى"
                 value={email}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 required
@@ -69,7 +75,7 @@ const Login = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                Password
+                كلمه المرور
               </label>
               <input
                 type="password"
@@ -90,9 +96,17 @@ const Login = () => {
               } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
               disabled={isLoading}
             >
-              {isLoading ? 'Loading...' : 'Login'}
+              {isLoading ? 'Loading...' : 'تسجيل الدخول'}
             </button>
           </form>
+
+          <button className="w-full flex justify-center mt-4 py-2 px-4 border border-indigo-600 rounded-md shadow-sm text-sm font-medium text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <Link href="/register" passHref>
+              {' '}
+              {'سجل حساب'}
+            </Link>
+          </button>
+
           {message && (
             <p
               className={`mt-4 text-center ${

@@ -1,5 +1,3 @@
-// pages/api/register.ts
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import User from '../../models/user';
@@ -23,6 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // Handle file uploads
   await new Promise<void>((resolve, reject) => {
+    // @ts-ignore
     handleFileUploads(req, res, (err: any) => {
       if (err) {
         reject(err);
@@ -34,11 +33,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   await dbConnect();
 
-  const { email, password } = req.body as { email: string; password: string };
+  const { email, password, confirmPassword } = req.body as { email: string; password: string; confirmPassword: string };
+ // @ts-ignore
   const files = req?.files as any;
 
-  if (!email || !password || !files.photoIdFront || !files.photoIdBack) {
+  if (!email || !password || !confirmPassword || !files.photoIdFront || !files.photoIdBack) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    return res.status(400).json({ error: 'Passwords do not match' });
   }
 
   try {
@@ -73,9 +78,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     await user.save();
 
-    res.status(201).json({ message: 'User registered successfully' });
+    res.status(201).json({ message: 'تم التسجيل بنجاح انتظر للمراجعه خلال ساعات' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "فى مشكله حصلت كلمنا على الصفحه او تليفون 01224999086" });
   }
 };
 

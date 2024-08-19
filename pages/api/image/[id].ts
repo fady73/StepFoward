@@ -10,6 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await dbConnect();
     
     const { id } = req.query;
+    // @ts-ignore
     const user = await User.findById(id as string).select('photoIdFront photoIdBack');
 
     if (!user) {

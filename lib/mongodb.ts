@@ -1,6 +1,6 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 
-const MONGODB_URI: string | undefined = "mongodb+srv://fadykhayrat:adminfadykhayrat@cluster0.avs1op7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const MONGODB_URI: string | undefined =  process.env.NEXT_PUBLIC_MONGODB_URI;
 
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');

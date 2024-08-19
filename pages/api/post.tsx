@@ -23,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     req.query.searchQuery ? req.query.searchQuery : undefined
   );
 
-  if (data.response.length !== 0) {
+  if (data && data.response.length !== 0) {
     const { response, hasMore, nextCursor } = data;
     const blocks = await fetchPageBlocks(response[0].id);
 

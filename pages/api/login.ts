@@ -27,17 +27,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: 'المستخدم غير موجود' });
   }
 
   const isPasswordMatch = await bcrypt.compare(password, user.password);
 
   if (!isPasswordMatch) {
-    return res.status(401).json({ error: 'Invalid credentials' });
+    return res.status(401).json({ error: 'الباسورد او البريد الالكترونى غلط' });
   }
 
   if (user.status === 'waiting') {
-    return res.status(403).json({ error: 'User is on the waiting list' });
+    return res.status(403).json({ error: 'البريد الالكترونى فى مرحله المراجعه' });
   }
 
   // Generate JWT Token

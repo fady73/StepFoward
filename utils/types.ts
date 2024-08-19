@@ -45,6 +45,7 @@ export type Language =
   | 'wasm'
   | 'yaml';
   export interface RegisterFormData {
+    confirmPassword: string | number | readonly string[];
     email: string;
     password: string;
     photoIdFront: File;

@@ -41,10 +41,19 @@ export default function Navbar() {
         name: 'شاركنا العاب',
         href: '/addGames',
         current: false,
-        svgNamespace: 'http://www.w3.org/2000/svg',
-        svgPath:
-          'M512 936.916C277.327 936.916 87.084 746.672 87.084 512S277.327 87.083 512 87.083c234.677 0 424.917 190.244 424.917 424.916S746.677 936.916 512 936.916zm212.458-467.412H554.492V299.546h-84.984v169.958H299.542v84.992h169.966v169.966h84.984V554.496h169.966v-84.992z',
-        svgProps: {}
+        svgItem: (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+            aria-hidden="true"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 1024 1024"
+          >
+            <path d="M512 936.916C277.327 936.916 87.084 746.672 87.084 512S277.327 87.083 512 87.083c234.677 0 424.917 190.244 424.917 424.916S746.677 936.916 512 936.916zm212.458-467.412H554.492V299.546h-84.984v169.958H299.542v84.992h169.966v169.966h84.984V554.496h169.966v-84.992z" />
+          </svg>
+        )
       },
       {
         name: token !== null ? 'حسابى' : 'سجل دخول',
@@ -74,16 +83,20 @@ export default function Navbar() {
       onClick={item.name === 'حسابى' ? handleClick : () => setLearnVisible(false)}
       className="inline-flex flex-col items-center justify-center"
     >
-      <svg
-        className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
-        aria-hidden="true"
-        xmlns={item.svgNamespace}
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        {...item.svgProps}
-      >
-        <path d={item.svgPath} />
-      </svg>
+      {item.svgItem ? (
+        <>{item.svgItem}</>
+      ) : (
+        <svg
+          className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+          aria-hidden="true"
+          xmlns={item.svgNamespace}
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          {...item.svgProps}
+        >
+          <path d={item.svgPath} />
+        </svg>
+      )}
       <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
         {item.name}
       </span>
@@ -143,10 +156,15 @@ export default function Navbar() {
           <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
             {learnVisible && (
               <div className="absolute bottom-16 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-                <div className="grid h-full grid-cols-2 mx-auto font-medium">
+                <div className="grid h-full grid-cols-1 mx-auto font-medium">
                   <button
                     className="w-full"
-                    onClick={() => localStorage.removeItem('token')}
+                    onClick={() => {
+                      localStorage.removeItem('token');
+                      if (window.location.pathname == '/') {
+                        window.location.reload();
+                      }
+                    }}
                   >
                     <Link
                       className=" w-full h-full inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600"
@@ -158,16 +176,6 @@ export default function Navbar() {
                       </span>
                     </Link>
                   </button>
-
-                  <Link
-                    className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600"
-                    passHref
-                    href="/someOtherLink"
-                  >
-                    <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
-                      Navigation Link
-                    </span>
-                  </Link>
                 </div>
               </div>
             )}
