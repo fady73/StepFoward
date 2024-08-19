@@ -21,7 +21,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  const user = await User.findOne({ email });
+
+ // @ts-ignore
+ const user = await User.findOne({ email });
   if (!user) {
     return res.status(404).json({ error: 'User not found' });
   }

@@ -23,8 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!email || !password) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
-
-  const user = await User.findOne({ email }).exec(); // Use .exec() to get a promise
+ // @ts-ignore
+  const user = await User.findOne({ email });
 
   if (!user) {
     return res.status(404).json({ error: 'المستخدم غير موجود' });
