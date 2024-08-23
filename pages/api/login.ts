@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { JwtPayload } from 'types/jwt';
+import NextCors from 'nextjs-cors';
 import User from '../../models/user';
 import bcrypt from 'bcrypt';
 import dbConnect from '../../lib/mongodb';
@@ -14,6 +15,12 @@ const generateToken = (user: JwtPayload) => {
 };
 
 export async function POST(req: NextApiRequest, res: NextApiResponse) {
+  await NextCors(req, res, {
+    // Options
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
   await dbConnect();
 
   const { email, password } = req.body as { email: string; password: string };
