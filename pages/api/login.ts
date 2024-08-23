@@ -14,7 +14,8 @@ const generateToken = (user: JwtPayload) => {
   return jwt.sign(user, JWT_SECRET, { expiresIn: '1h' }); // Adjust expiration as needed
 };
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default async(req: NextApiRequest, res: NextApiResponse)=> {
   await NextCors(req, res, {
     // Options
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
