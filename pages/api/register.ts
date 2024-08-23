@@ -11,17 +11,19 @@ const upload = multer({ dest: '/tmp' });
 
 // Helper function to handle file uploads
 const handleFileUploads = (req: NextApiRequest, res: NextApiResponse, next: () => void) => {
-  upload.fields([{ name: 'photoIdFront', maxCount: 1 }, { name: 'photoIdBack', maxCount: 1 }])(req, res, next);
+  upload.fields([
+    { name: 'photoIdFront', maxCount: 1 },
+    { name: 'photoIdBack', maxCount: 1 }
+  ])(req, res, next);
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
 
   // Handle file uploads
   await new Promise<void>((resolve, reject) => {
-    // @ts-ignore
     handleFileUploads(req, res, (err: any) => {
       if (err) {
         reject(err);
@@ -34,20 +36,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
 
   const { email, password, confirmPassword } = req.body as { email: string; password: string; confirmPassword: string };
- // @ts-ignore
   const files = req?.files as any;
 
   if (!email || !password || !confirmPassword || !files.photoIdFront || !files.photoIdBack) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  // Check if passwords match
   if (password !== confirmPassword) {
     return res.status(400).json({ error: 'Passwords do not match' });
   }
 
   try {
-    // Read files and convert to binary
     const photoIdFrontPath = files.photoIdFront[0].path;
     const photoIdBackPath = files.photoIdBack[0].path;
     const photoIdFrontData = fs.readFileSync(photoIdFrontPath);
@@ -60,7 +59,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user with binary data and default isAdmin false
+    // Create user
     const user = new User({
       email,
       password: hashedPassword,
@@ -73,7 +72,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         contentType: files.photoIdBack[0].mimetype,
       },
       status: 'waiting',
-      isAdmin: false // Set isAdmin to false by default
+      isAdmin: false
     });
 
     await user.save();
@@ -82,9 +81,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (error) {
     res.status(500).json({ error: "فى مشكله حصلت كلمنا على الصفحه او تليفون 01224999086" });
   }
-};
-
-export default handler;
+}
 
 export const config = {
   api: {

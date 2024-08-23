@@ -1,5 +1,3 @@
-// pages/api/login.ts
-
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { JwtPayload } from 'types/jwt';
@@ -15,7 +13,7 @@ const generateToken = (user: JwtPayload) => {
   return jwt.sign(user, JWT_SECRET, { expiresIn: '1h' }); // Adjust expiration as needed
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   await dbConnect();
 
   const { email, password } = req.body as { email: string; password: string };
@@ -23,7 +21,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!email || !password) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
- // @ts-ignore
+
+  // @ts-ignore
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -51,4 +50,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     message: 'Login successful', 
     token, 
     isAdmin: user.isAdmin || false 
-  });}
+  });
+}
