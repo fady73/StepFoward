@@ -135,8 +135,8 @@ const Login = () => {
             </button>{' '}
           </Link>
         </div>
+        <ToastContainer />
       </div>
-      <ToastContainer />
     </Layout>
   );
 };

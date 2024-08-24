@@ -208,8 +208,8 @@ const Register = () => {
             </button>{' '}
           </Link>
         </div>
+        <ToastContainer />
       </div>
-      <ToastContainer />
     </Layout>
   );
 };
