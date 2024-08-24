@@ -128,13 +128,12 @@ const Login = () => {
               </Form>
             )}
           </Formik>
-
-          <button className="w-full flex justify-center mt-4 py-2 px-4 border border-indigo-600 rounded-md shadow-sm text-sm font-medium text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <Link href="/register" passHref>
+          <Link href="/register" passHref>
+            <button className="w-full flex justify-center mt-4 py-2 px-4 border border-indigo-600 rounded-md shadow-sm text-sm font-medium text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               {' '}
               {'سجل حساب'}
-            </Link>
-          </button>
+            </button>{' '}
+          </Link>
         </div>
       </div>
       <ToastContainer />
