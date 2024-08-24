@@ -36,6 +36,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
   await dbConnect();
 
+  
   const { email, password, confirmPassword } = req.body as { email: string; password: string; confirmPassword: string };
       // @ts-ignore
   const files = req?.files as any;
