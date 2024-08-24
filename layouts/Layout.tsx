@@ -12,6 +12,7 @@ export function Layout(props) {
     ogUrl,
     title
   };
+  console.log('metaHeadProps', metaHeadProps);
 
   return (
     <>

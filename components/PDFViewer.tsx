@@ -1,18 +1,12 @@
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-import {
-  ProgressBar,
-  ScrollMode,
-  SpecialZoomLevel,
-  Viewer,
-  Worker
-} from '@react-pdf-viewer/core';
+import { ProgressBar, ScrollMode, SpecialZoomLevel, Viewer, Worker } from '@react-pdf-viewer/core';
 import React, { useEffect, useState } from 'react';
 
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
 
-const PDFViewer = ({ setLoading, setLoadnumber }) => {
+const PDFViewer = ({setLoading,setLoadnumber}) => {
   const [viewPdf, setViewPdf] = useState(null);
 
   useEffect(() => {
@@ -23,6 +17,7 @@ const PDFViewer = ({ setLoading, setLoadnumber }) => {
         const reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onloadend = e => {
+          console.log(e.target.result);
           setViewPdf(e.target.result);
         };
       })
@@ -52,21 +47,18 @@ const PDFViewer = ({ setLoading, setLoadnumber }) => {
       }
     }
   });
-  //  if(loading)  return "loading"
-  const renderLoading = (percentages: number) => {
-    if (percentages < 100) {
-      setLoadnumber;
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-    setLoadnumber(Math.round(percentages));
-    return (
-      <div style={{ width: '240px' }}>
-        <ProgressBar progress={Math.round(percentages)} />
-      </div>
-    );
-  };
+//  if(loading)  return "loading"
+const renderLoading=(percentages: number) => {
+  if(percentages<100){
+    setLoadnumber
+    setLoading(true)
+  }else{setLoading(false)}
+  setLoadnumber(Math.round(percentages))
+return  (
+  <div style={{ width: '240px' }}>
+      <ProgressBar progress={Math.round(percentages)} />
+  </div>
+)};
   return (
     <div className="text-center">
       {/* this viewer only show in desktop mode */}
@@ -75,7 +67,8 @@ const PDFViewer = ({ setLoading, setLoadnumber }) => {
           {viewPdf && (
             <>
               <Viewer
-                renderLoader={renderLoading}
+                   renderLoader={renderLoading}
+            
                 fileUrl={viewPdf}
                 plugins={[newPlugin]}
                 theme="dark"
@@ -84,6 +77,7 @@ const PDFViewer = ({ setLoading, setLoadnumber }) => {
             </>
           )}
         </div>
+       
       </Worker>
     </div>
   );
