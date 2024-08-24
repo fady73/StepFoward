@@ -40,7 +40,7 @@ export default async(req: NextApiRequest, res: NextApiResponse)=> {
   const isPasswordMatch = await bcrypt.compare(password, user.password);
 
   if (!isPasswordMatch) {
-    return res.status(401).json({ error: 'الباسورد او البريد الالكترونى غلط' });
+    return res.status(401).json({ error:  'الباسورد او البريد الالكترونى غلط' });
   }
 
   if (user.status === 'waiting') {
