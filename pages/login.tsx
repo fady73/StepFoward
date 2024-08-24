@@ -134,8 +134,8 @@ const Login = () => {
               {'سجل حساب'}
             </button>{' '}
           </Link>
+          <ToastContainer style={{ marginRight: '-16px' }} />
         </div>
-        <ToastContainer />
       </div>
     </Layout>
   );

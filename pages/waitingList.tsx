@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 // @ts-nocheck
 
 import { useEffect, useState } from 'react';
@@ -102,56 +103,48 @@ const WaitingList = ({ initialUsers }: WaitingListProps) => {
             No users in the waiting list.
           </p>
         ) : (
-          <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
-            <thead className="bg-blue-500 text-white">
-              <tr>
-                <th className="py-3 px-4 border-b">Email</th>
-                <th className="py-3 px-4 border-b">Status</th>
-                <th className="py-3 px-4 border-b">Photo ID Front</th>
-                <th className="py-3 px-4 border-b">Photo ID Back</th>
-                <th className="py-3 px-4 border-b">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map(user => (
-                <tr key={user._id} className="hover:bg-gray-100">
-                  <td className="py-3 px-4 border-b">{user.email}</td>
-                  <td className="py-3 px-4 border-b">{user.status}</td>
-                  <td className="py-3 px-4 border-b text-center">
-                    <img
-                      src={getImageUrl(user._id, 'front')}
-                      alt="Photo ID Front"
-                      className="rounded-lg max-w-xs mx-auto"
-                    />
-                  </td>
-                  <td className="py-3 px-4 border-b text-center">
-                    <img
-                      src={getImageUrl(user._id, 'back')}
-                      alt="Photo ID Back"
-                      className="rounded-lg max-w-xs mx-auto"
-                    />
-                  </td>
-                  <td className="py-3 px-4 border-b text-center">
-                    {user.status === 'waiting' ? (
-                      <button
-                        onClick={() => handleStatusChange(user._id)}
-                        className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 ${
-                          loadingUserId === user._id
-                            ? 'opacity-50 cursor-not-allowed'
-                            : ''
-                        }`}
-                        disabled={loadingUserId === user._id}
-                      >
-                        {loadingUserId === user._id ? 'Updating...' : 'Activate'}
-                      </button>
-                    ) : (
-                      <span className="text-gray-500">Already Active</span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {users.map(user => (
+              <div
+                key={user._id}
+                className="bg-white border border-gray-200 rounded-lg shadow-md p-4"
+              >
+                <h2 className="text-md font-semibold mb-2">{user.email}</h2>
+                <p className="text-gray-600 mb-2">Status: {user.status}</p>
+                <div className="mb-2">
+                  <p className="font-semibold">Photo ID Front:</p>
+                  <img
+                    src={getImageUrl(user._id, 'front')}
+                    alt="Photo ID Front"
+                    className="rounded-lg max-w-full h-auto"
+                  />
+                </div>
+                <div className="mb-2">
+                  <p className="font-semibold">Photo ID Back:</p>
+                  <img
+                    src={getImageUrl(user._id, 'back')}
+                    alt="Photo ID Back"
+                    className="rounded-lg max-w-full h-auto"
+                  />
+                </div>
+                <div className="text-center">
+                  {user.status === 'waiting' ? (
+                    <button
+                      onClick={() => handleStatusChange(user._id)}
+                      className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 ${
+                        loadingUserId === user._id ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                      disabled={loadingUserId === user._id}
+                    >
+                      {loadingUserId === user._id ? 'Updating...' : 'Activate'}
+                    </button>
+                  ) : (
+                    <span className="text-gray-500">Already Active</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </Layout>

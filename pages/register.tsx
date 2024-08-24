@@ -208,7 +208,7 @@ const Register = () => {
             </button>{' '}
           </Link>
         </div>
-        <ToastContainer />
+        <ToastContainer style={{ marginRight: '-16px' }} />
       </div>
     </Layout>
   );
