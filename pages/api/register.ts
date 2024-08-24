@@ -10,8 +10,15 @@ import multer from 'multer';
 const upload = multer({ dest: '/tmp' });
 
 // Helper function to handle file uploads
-const handleFileUploads = (req: NextApiRequest, res: NextApiResponse, next: () => void) => {
-  upload.fields([{ name: 'photoIdFront', maxCount: 1 }, { name: 'photoIdBack', maxCount: 1 }])(req, res, next);
+const handleFileUploads = (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  next: () => void
+) => {
+  upload.fields([
+    { name: 'photoIdFront', maxCount: 1 },
+    { name: 'photoIdBack', maxCount: 1 }
+  ])(req, res, next);
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -33,11 +40,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   await dbConnect();
 
-  const { email, password, confirmPassword } = req.body as { email: string; password: string; confirmPassword: string };
- // @ts-ignore
+  const { email, password, confirmPassword } = req.body as {
+    email: string;
+    password: string;
+    confirmPassword: string;
+  };
+  // @ts-ignore
   const files = req?.files as any;
 
-  if (!email || !password || !confirmPassword || !files.photoIdFront || !files.photoIdBack) {
+  if (
+    !email ||
+    !password ||
+    !confirmPassword ||
+    !files.photoIdFront ||
+    !files.photoIdBack
+  ) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
@@ -59,11 +76,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    // @ts-ignore
     const foundedUser = await User.findOne({ email });
-console.log(foundedUser)
-if(foundedUser)
-  return     res.status(401).json({ message:`${email} البريد الالكترونى مسجل عندنا` });
+    if (foundedUser)
+      return res.status(401).json({ message: `${email} البريد الالكترونى مسجل عندنا` });
 
     // Create user with binary data and default isAdmin false
     const user = new User({
@@ -71,11 +87,11 @@ if(foundedUser)
       password: hashedPassword,
       photoIdFront: {
         data: photoIdFrontData,
-        contentType: files.photoIdFront[0].mimetype,
+        contentType: files.photoIdFront[0].mimetype
       },
       photoIdBack: {
         data: photoIdBackData,
-        contentType: files.photoIdBack[0].mimetype,
+        contentType: files.photoIdBack[0].mimetype
       },
       status: 'waiting',
       isAdmin: false // Set isAdmin to false by default
@@ -85,7 +101,9 @@ if(foundedUser)
 
     res.status(201).json({ message: 'تم التسجيل بنجاح انتظر للمراجعه خلال ساعات' });
   } catch (error) {
-    res.status(500).json({ error: "فى مشكله حصلت كلمنا على الصفحه او تليفون 01224999086" });
+    res
+      .status(500)
+      .json({ error: 'فى مشكله حصلت كلمنا على الصفحه او تليفون 01224999086' });
   }
 };
 
@@ -93,6 +111,6 @@ export default handler;
 
 export const config = {
   api: {
-    bodyParser: false,
-  },
+    bodyParser: false
+  }
 };
