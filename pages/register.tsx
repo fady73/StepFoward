@@ -201,17 +201,12 @@ const Register = () => {
               </Form>
             )}
           </Formik>
-
-          <button className="w-full flex justify-center mt-4 py-2 px-4 border border-indigo-600 rounded-md shadow-sm text-sm font-medium text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <Link
-              className=" w-full h-full inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600"
-              href="/login"
-              passHref
-            >
+          <Link href="/login" passHref>
+            <button className="w-full flex justify-center mt-4 py-2 px-4 border border-indigo-600 rounded-md shadow-sm text-sm font-medium text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               {' '}
               {'تسجيل الدخول'}
-            </Link>
-          </button>
+            </button>{' '}
+          </Link>
         </div>
       </div>
       <ToastContainer />
