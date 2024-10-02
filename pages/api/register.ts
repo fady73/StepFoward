@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import NextCors from 'nextjs-cors';
 import User from '../../models/user';
 import bcrypt from 'bcrypt';
 import dbConnect from '../../lib/mongodb';
@@ -23,12 +22,9 @@ const handleFileUploads = (
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await NextCors(req, res, {
-    // Options
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  })
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
+  }
 
   // Handle file uploads
   await new Promise<void>((resolve, reject) => {
