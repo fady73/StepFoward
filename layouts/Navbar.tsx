@@ -54,15 +54,15 @@ export default function Navbar() {
             <path d="M512 936.916C277.327 936.916 87.084 746.672 87.084 512S277.327 87.083 512 87.083c234.677 0 424.917 190.244 424.917 424.916S746.677 936.916 512 936.916zm212.458-467.412H554.492V299.546h-84.984v169.958H299.542v84.992h169.966v169.966h84.984V554.496h169.966v-84.992z" />
           </svg>
         )
-      },
-      {
-        name: token !== null ? 'حسابى' : 'سجل دخول',
-        current: false,
-        svgNamespace: 'http://www.w3.org/2000/svg',
-        svgPath: 'M10 10a4 4 0 110-8 4 4 0 010 8zM2 20a10 10 0 0116-8 10 10 0 01-16 8z',
-        svgProps: {},
-        href: token !== null ? '' : '/login'
       }
+      // {
+      //   name: token !== null ? 'حسابى' : 'سجل دخول',
+      //   current: false,
+      //   svgNamespace: 'http://www.w3.org/2000/svg',
+      //   svgPath: 'M10 10a4 4 0 110-8 4 4 0 010 8zM2 20a10 10 0 0116-8 10 10 0 01-16 8z',
+      //   svgProps: {},
+      //   href: token !== null ? '' : '/login'
+      // }
     ];
 
     setNavigation(nav);
