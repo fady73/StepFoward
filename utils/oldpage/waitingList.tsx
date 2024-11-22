@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { IUser } from '../models/user';
+import { IUser } from '../../models/user';
 import { Layout } from 'layouts/Layout';
 import { useRouter } from 'next/router';
 
