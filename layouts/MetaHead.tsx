@@ -22,6 +22,11 @@ export function MetaHead(props) {
       <meta property="og:title" content={titleName} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
+      <script
+        defer
+        src="https://app.fastbots.ai/embed.js"
+        data-bot-id="cm4d0xs4u18r8n8bosm6k5wv6"
+      ></script>
     </Head>
   );
 }

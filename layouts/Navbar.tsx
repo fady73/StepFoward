@@ -179,7 +179,7 @@ export default function Navbar() {
                 </div>
               </div>
             )}
-            <div className={`grid h-full grid-cols-4 mx-auto font-medium`}>
+            <div className={`grid h-full grid-cols-3 mx-auto font-medium`}>
               {navigation.map((item, index) => (
                 <>
                   {item.href.length !== 0 ? (
