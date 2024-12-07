@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-#chat-widget-push-to-talk {
+#chatbase-bubble-button {
   bottom: 70px !important;
+}
+
+#chatbase-bubble-window {
+  right: 5rem !important;
+}
+
+@media screen and (max-width: 639px) {
+  #chatbase-bubble-window {
+    right: 0rem !important;
+  }
 }

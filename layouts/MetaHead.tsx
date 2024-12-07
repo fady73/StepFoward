@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Head from 'next/head';
 import siteData from 'siteData';
 
@@ -23,9 +25,10 @@ export function MetaHead(props) {
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
       <script
-        defer
-        src="https://app.fastbots.ai/embed.js"
-        data-bot-id="cm4d0xs4u18r8n8bosm6k5wv6"
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="1VQa28W02SWAR37SnUf8K"
+        domain="www.chatbase.co"
+        defer={false}
       ></script>
     </Head>
   );
