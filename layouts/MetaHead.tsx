@@ -18,7 +18,7 @@ export function MetaHead(props) {
       <meta property="og:description" content={description} />
       <meta property="og:title" content={siteData.title} />
       <meta property="og:image" content={imageUrl || siteData.ogBanner} />
-      <meta name="algolia-site-verification"  content="DE70F703343E3F3C" />
+      <meta name="algolia-site-verification" content="DE70F703343E3F3C" />
 
       <meta property="og:url" content={'step-forward.co'} />
       <meta property="og:type" content="website" />
