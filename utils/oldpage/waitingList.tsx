@@ -25,7 +25,7 @@ const WaitingList = ({ initialUsers }: WaitingListProps) => {
       setError(null);
 
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/waiting-list`, {
+        const res = await fetch(`https://step-forward-app.vercel.app/api/waiting-list`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}` // Include token if needed
           }

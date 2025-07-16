@@ -74,7 +74,7 @@ const Index = props => {
       searchQuery
     };
     const queryString = buildQueryString(queryParams);
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/post${
+    const url = `https://step-forward-app.vercel.app/api/post${
       queryString ? '?' + queryString : ''
     }`;
     console.log(url);
